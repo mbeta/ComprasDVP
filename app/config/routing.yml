@@ -1,0 +1,4 @@
+app_compras:
+    resource: "@AppComprasBundle/Resources/config/routing.yml"
+    prefix:   /
+

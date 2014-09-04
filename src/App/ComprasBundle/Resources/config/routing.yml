@@ -1,0 +1,3 @@
+app_compras_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: AppComprasBundle:Default:index }

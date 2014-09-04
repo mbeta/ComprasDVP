@@ -1,0 +1,7 @@
+parameters:
+#    app_compras.example.class: App\ComprasBundle\Example
+
+services:
+#    app_compras.example:
+#        class: %app_compras.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
