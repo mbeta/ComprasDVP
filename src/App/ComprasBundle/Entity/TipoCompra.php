@@ -5,7 +5,7 @@ namespace App\ComprasBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tipo_compra
+ * TipoCompra
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="App\ComprasBundle\Entity\TipoCompraRepository")
