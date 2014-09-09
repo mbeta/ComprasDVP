@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Tipo_compra
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="App\ComprasBundle\Entity\Tipo_compraRepository")
+ * @ORM\Entity(repositoryClass="App\ComprasBundle\Entity\TipoCompraRepository")
  */
-class Tipo_compra
+class TipoCompra
 {
     /**
      * @var integer
