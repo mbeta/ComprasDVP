@@ -27,6 +27,12 @@ class Ubicacion
      * @ORM\Column(name="descripcion", type="string", length=50)
      */
     private $descripcion;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Delegacion", inversedBy="ubicaciones")
+     * @ORM\JoinColumn(name="delegacion_id", referencedColumnName="id")
+     */
+    protected $delegacion;
 
 
     /**

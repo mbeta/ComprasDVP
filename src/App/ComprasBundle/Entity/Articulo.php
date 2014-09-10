@@ -41,6 +41,11 @@ class Articulo
      * @ORM\Column(name="codigoRubro", type="string", length=25)
      */
     private $codigoRubro;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="LineaPedidoElemento", mappedBy="articulo")
+     */
+    protected $lineasPedidoElemento;
 
 
     /**

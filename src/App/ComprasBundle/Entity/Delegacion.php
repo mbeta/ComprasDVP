@@ -27,6 +27,11 @@ class Delegacion
      * @ORM\Column(name="descripcion", type="string", length=25)
      */
     private $descripcion;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Ubicacion", mappedBy="delegacion")
+     */
+    protected $ubicaciones;
 
 
     /**

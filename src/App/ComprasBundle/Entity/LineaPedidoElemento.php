@@ -34,6 +34,12 @@ class LineaPedidoElemento
      * @ORM\Column(name="precioUnitario", type="decimal")
      */
     private $precioUnitario;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Articulo", inversedBy="lineasPedidoElemento")
+     * @ORM\JoinColumn(name="articulo_id", referencedColumnName="id")
+     */
+    protected $articulo;
 
 
     /**
