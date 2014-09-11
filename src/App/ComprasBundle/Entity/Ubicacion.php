@@ -67,4 +67,27 @@ class Ubicacion
     {
         return $this->descripcion;
     }
+    
+    /**
+     * Get delegacion
+     *
+     * @return Delegacion 
+     */
+    public function getDelegacion()
+    {
+        return $this->delegacion;
+    }
+    
+    /**
+     * Set delegacion
+     *
+     * @param string $delegacion
+     * @return Delegacion
+     */
+    public function setDelegacion($delegacion)
+    {
+        $this->delegacion = $delegacion;
+
+        return $this;
+    }
 }

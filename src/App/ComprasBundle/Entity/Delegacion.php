@@ -66,4 +66,14 @@ class Delegacion
     {
         return $this->descripcion;
     }
+    
+    /**
+     * Get toString
+     *
+     * @return string 
+     */
+    public function __toString()
+    {
+        return ($this->getDescripcion()) ? : '';
+    }
 }

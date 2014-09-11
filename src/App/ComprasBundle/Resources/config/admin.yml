@@ -9,3 +9,25 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AppComprasBundle]]
+            
+    sonata.admin.ubicacion:
+        class: App\ComprasBundle\Admin\UbicacionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Ubicacion" }
+        arguments:
+            - ~
+            - App\ComprasBundle\Entity\Ubicacion
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppComprasBundle]]
+            
+    sonata.admin.articulo:
+        class: App\ComprasBundle\Admin\ArticuloAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Articulo" }
+        arguments:
+            - ~
+            - App\ComprasBundle\Entity\Articulo
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppComprasBundle]]
