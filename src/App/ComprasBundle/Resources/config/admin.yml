@@ -1,0 +1,11 @@
+services:
+    sonata.admin.delegacion:
+        class: App\ComprasBundle\Admin\DelegacionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Delegacion" }
+        arguments:
+            - ~
+            - App\ComprasBundle\Entity\Delegacion
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppComprasBundle]]
