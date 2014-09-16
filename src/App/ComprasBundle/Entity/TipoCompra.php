@@ -43,6 +43,14 @@ class TipoCompra
     private $montoMax;
 
 
+     /**
+     * @ORM\OneToMany(targetEntity="PedidoElemento", mappedBy="tipocompra")
+     */
+    protected $pedidoelementos;
+
+    
+    
+    
     /**
      * Get id
      *

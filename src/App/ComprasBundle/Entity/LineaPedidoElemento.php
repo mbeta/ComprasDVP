@@ -42,6 +42,15 @@ class LineaPedidoElemento
     protected $articulo;
 
 
+     /**
+     * @ORM\ManyToOne(targetEntity="PedidoElemento", inversedBy="lineas")
+     * @ORM\JoinColumn(name="pedidoelemento_id", referencedColumnName="id")
+     */
+    protected $pedidoelemento;
+    
+    
+    
+    
     /**
      * Get id
      *
