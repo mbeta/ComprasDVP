@@ -84,6 +84,21 @@ class PedidoElemento
     protected $estadopedido;
 
 
+    
+     /**
+     * @ORM\ManyToOne(targetEntity="TipoCompra", inversedBy="pedidoelementos")
+     * @ORM\JoinColumn(name="tipocompra_id", referencedColumnName="id")
+     */
+    protected $tipocompra;
+    
+    
+    
+    /**
+     * @ORM\OneToMany(targetEntity="LineaPedidoElemento", mappedBy="pedidoelemento")
+     */
+    protected $lineas;
+
+    
     /**
      * Get id
      *

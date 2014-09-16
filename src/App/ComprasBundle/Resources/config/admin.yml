@@ -31,3 +31,25 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AppComprasBundle]]
+   
+    sonata.admin.pedidoelemento:
+        class: App\ComprasBundle\Admin\PedidoElementoAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "PedidoElemento" }
+        arguments:
+            - ~
+            - App\ComprasBundle\Entity\PedidoElemento
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppComprasBundle]]
+    
+    sonata.admin.tipocompra:
+        class: App\ComprasBundle\Admin\TipoCompraAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "TipoCompra" }
+        arguments:
+            - ~
+            - App\ComprasBundle\Entity\TipoCompra
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppComprasBundle]]
