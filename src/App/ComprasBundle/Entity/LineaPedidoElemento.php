@@ -106,4 +106,27 @@ class LineaPedidoElemento
     {
         return $this->precioUnitario;
     }
+    
+     /**
+     * Get pedidoelemento
+     *
+     * @return PedidoElemento
+     */
+    public function getPedidoElemento()
+    {
+        return $this->pedidoelemento;
+    }
+    
+    /**
+     * Set pedidoelemento
+     *
+     * @param string $pedidoelemento
+     * @return PedidoElemento
+     */
+    public function setPedidoElemento($pedidoelemento)
+    {
+        $this->pedidoelemento = $pedidoelemento;
+
+        return $this;
+    } 
 }

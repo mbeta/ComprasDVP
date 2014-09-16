@@ -286,4 +286,26 @@ class PedidoElemento
     {
         return $this->fechaAutorizado;
     }
+    
+    /**
+     * Get TipoCompra
+     *
+     * @return TipoCompra
+     */
+    public function getTipoCompra()
+    {
+        return $this->tipocompra;
+    }
+    
+     /**
+     * Set TipoCompra
+     * 
+     * @param string $tipocompra
+     * @return TipoCompra
+     */
+    public function setTipoCompra($tipocompra)
+    {
+        $this->tipocompra = $tipocompra;
+        return $this;
+    }
 }

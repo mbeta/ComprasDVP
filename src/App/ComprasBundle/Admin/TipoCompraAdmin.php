@@ -14,7 +14,7 @@ class TipoCompraAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('descripcion')  
+            ->add('descipcion')  
             ->add('montoMin') 
             ->add('montoMax') 
         ;
@@ -24,7 +24,7 @@ class TipoCompraAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('descripcion')  
+            ->add('descipcion')  
             ->add('montoMin') 
             ->add('montoMax') 
         ;
@@ -34,7 +34,7 @@ class TipoCompraAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('descripcion')  
+            ->addIdentifier('descipcion')  
             ->add('montoMin') 
             ->add('montoMax')  
         ;
