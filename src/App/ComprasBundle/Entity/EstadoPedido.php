@@ -34,6 +34,12 @@ class EstadoPedido
      * @ORM\Column(name="observacion", type="string", length=255)
      */
     private $observacion;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="PedidoElemento", mappedBy="estadopedido")
+     */
+    protected $pedidoelementos;
+
 
 
     /**

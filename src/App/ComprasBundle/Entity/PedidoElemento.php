@@ -76,6 +76,12 @@ class PedidoElemento
      * @ORM\Column(name="fecha_autorizado", type="date")
      */
     private $fechaAutorizado;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="EstadoPedido", inversedBy="pedidoelementos")
+     * @ORM\JoinColumn(name="estadopedido_id", referencedColumnName="id")
+     */
+    protected $estadopedido;
 
 
     /**

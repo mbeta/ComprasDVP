@@ -48,6 +48,13 @@ class Usuario
      * @ORM\Column(name="password", type="string", length=25)
      */
     private $password;
+    
+   /**
+     * @ORM\ManyToOne(targetEntity="Ubicacion", inversedBy="usuarios")
+     * @ORM\JoinColumn(name="ubicacion_id", referencedColumnName="id")
+     */
+    protected $ubicacion;
+
 
 
     /**

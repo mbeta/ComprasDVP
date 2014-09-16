@@ -33,6 +33,12 @@ class Ubicacion
      * @ORM\JoinColumn(name="delegacion_id", referencedColumnName="id")
      */
     protected $delegacion;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Usuario", mappedBy="ubicacion")
+     */
+    protected $usuarios;
+
 
 
     /**
