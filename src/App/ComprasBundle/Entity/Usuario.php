@@ -60,6 +60,8 @@ class Usuario
         return $this->id;
     }
 
+    
+
     /**
      * Set nombre
      *

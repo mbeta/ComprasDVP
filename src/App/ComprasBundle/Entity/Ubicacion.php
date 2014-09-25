@@ -45,6 +45,8 @@ class Ubicacion
         return $this->id;
     }
 
+    
+
     /**
      * Set descripcion
      *
@@ -67,27 +69,27 @@ class Ubicacion
     {
         return $this->descripcion;
     }
-    
-    /**
-     * Get delegacion
-     *
-     * @return Delegacion 
-     */
-    public function getDelegacion()
-    {
-        return $this->delegacion;
-    }
-    
+
     /**
      * Set delegacion
      *
-     * @param string $delegacion
-     * @return Delegacion
+     * @param \App\ComprasBundle\Entity\Delegacion $delegacion
+     * @return Ubicacion
      */
-    public function setDelegacion($delegacion)
+    public function setDelegacion(\App\ComprasBundle\Entity\Delegacion $delegacion = null)
     {
         $this->delegacion = $delegacion;
 
         return $this;
+    }
+
+    /**
+     * Get delegacion
+     *
+     * @return \App\ComprasBundle\Entity\Delegacion 
+     */
+    public function getDelegacion()
+    {
+        return $this->delegacion;
     }
 }

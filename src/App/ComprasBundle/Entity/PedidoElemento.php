@@ -94,6 +94,21 @@ class PedidoElemento
 
     
     /**
+     * @ORM\ManyToMany(targetEntity="PedidoElemento", mappedBy="pedidosabsorbidos")
+     */  
+    protected $absorbidopor;
+    
+     /**
+     * @ORM\ManyToMany(targetEntity="PedidoElemento", inversedBy="absorbidopor")
+     * @ORM\JoinTable(name="Absorbidos",
+     *      joinColumns={@ORM\JoinColumn(name="pedido_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="absorbido_id", referencedColumnName="id")}
+     *      )
+     */  
+    protected $pedidosabsorbidos;
+    
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -103,11 +118,21 @@ class PedidoElemento
         return $this->id;
     }
 
+       /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->lineas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->absorbidopor = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pedidosabsorbidos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Set fechaPedido
      *
      * @param \DateTime $fechaPedido
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setFechaPedido($fechaPedido)
     {
@@ -130,7 +155,7 @@ class PedidoElemento
      * Set referencia
      *
      * @param string $referencia
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setReferencia($referencia)
     {
@@ -153,7 +178,7 @@ class PedidoElemento
      * Set nroPedido
      *
      * @param integer $nroPedido
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setNroPedido($nroPedido)
     {
@@ -176,7 +201,7 @@ class PedidoElemento
      * Set observacion
      *
      * @param string $observacion
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setObservacion($observacion)
     {
@@ -199,7 +224,7 @@ class PedidoElemento
      * Set nroActuacion
      *
      * @param string $nroActuacion
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setNroActuacion($nroActuacion)
     {
@@ -222,7 +247,7 @@ class PedidoElemento
      * Set autorizado
      *
      * @param boolean $autorizado
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setAutorizado($autorizado)
     {
@@ -245,7 +270,7 @@ class PedidoElemento
      * Set ley
      *
      * @param string $ley
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setLey($ley)
     {
@@ -268,7 +293,7 @@ class PedidoElemento
      * Set fechaAutorizado
      *
      * @param \DateTime $fechaAutorizado
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setFechaAutorizado($fechaAutorizado)
     {
@@ -286,26 +311,126 @@ class PedidoElemento
     {
         return $this->fechaAutorizado;
     }
-    
+
     /**
-     * Get TipoCompra
+     * Set tipocompra
      *
-     * @return TipoCompra
+     * @param \App\ComprasBundle\Entity\TipoCompra $tipocompra
+     * @return PedidoElemento
      */
-    public function getTipoCompra()
+    public function setTipocompra(\App\ComprasBundle\Entity\TipoCompra $tipocompra = null)
+    {
+        $this->tipocompra = $tipocompra;
+
+        return $this;
+    }
+
+    /**
+     * Get tipocompra
+     *
+     * @return \App\ComprasBundle\Entity\TipoCompra 
+     */
+    public function getTipocompra()
     {
         return $this->tipocompra;
     }
-    
-     /**
-     * Set TipoCompra
-     * 
-     * @param string $tipocompra
-     * @return TipoCompra
+
+    /**
+     * Add lineas
+     *
+     * @param \App\ComprasBundle\Entity\LineaPedidoElemento $lineas
+     * @return PedidoElemento
      */
-    public function setTipoCompra($tipocompra)
+    public function addLinea(\App\ComprasBundle\Entity\LineaPedidoElemento $lineas)
     {
-        $this->tipocompra = $tipocompra;
+        $this->lineas[] = $lineas;
+
         return $this;
+    }
+
+    /**
+     * Remove lineas
+     *
+     * @param \App\ComprasBundle\Entity\LineaPedidoElemento $lineas
+     */
+    public function removeLinea(\App\ComprasBundle\Entity\LineaPedidoElemento $lineas)
+    {
+        $this->lineas->removeElement($lineas);
+    }
+
+    /**
+     * Get lineas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLineas()
+    {
+        return $this->lineas;
+    }
+
+    /**
+     * Add absorbidopor
+     *
+     * @param \App\ComprasBundle\Entity\PedidoElemento $absorbidopor
+     * @return PedidoElemento
+     */
+    public function addAbsorbidopor(\App\ComprasBundle\Entity\PedidoElemento $absorbidopor)
+    {
+        $this->absorbidopor[] = $absorbidopor;
+
+        return $this;
+    }
+
+    /**
+     * Remove absorbidopor
+     *
+     * @param \App\ComprasBundle\Entity\PedidoElemento $absorbidopor
+     */
+    public function removeAbsorbidopor(\App\ComprasBundle\Entity\PedidoElemento $absorbidopor)
+    {
+        $this->absorbidopor->removeElement($absorbidopor);
+    }
+
+    /**
+     * Get absorbidopor
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAbsorbidopor()
+    {
+        return $this->absorbidopor;
+    }
+
+    /**
+     * Add pedidosabsorbidos
+     *
+     * @param \App\ComprasBundle\Entity\PedidoElemento $pedidosabsorbidos
+     * @return PedidoElemento
+     */
+    public function addPedidosabsorbido(\App\ComprasBundle\Entity\PedidoElemento $pedidosabsorbidos)
+    {
+        $this->pedidosabsorbidos[] = $pedidosabsorbidos;
+
+        return $this;
+    }
+
+    /**
+     * Remove pedidosabsorbidos
+     *
+     * @param \App\ComprasBundle\Entity\PedidoElemento $pedidosabsorbidos
+     */
+    public function removePedidosabsorbido(\App\ComprasBundle\Entity\PedidoElemento $pedidosabsorbidos)
+    {
+        $this->pedidosabsorbidos->removeElement($pedidosabsorbidos);
+    }
+
+    /**
+     * Get pedidosabsorbidos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPedidosabsorbidos()
+    {
+        return $this->pedidosabsorbidos;
     }
 }

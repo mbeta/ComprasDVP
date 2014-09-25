@@ -61,11 +61,20 @@ class TipoCompra
         return $this->id;
     }
 
+   
+        /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->pedidoelementos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Set descipcion
      *
      * @param string $descipcion
-     * @return Tipo_compra
+     * @return TipoCompra
      */
     public function setDescipcion($descipcion)
     {
@@ -88,7 +97,7 @@ class TipoCompra
      * Set montoMin
      *
      * @param float $montoMin
-     * @return Tipo_compra
+     * @return TipoCompra
      */
     public function setMontoMin($montoMin)
     {
@@ -111,7 +120,7 @@ class TipoCompra
      * Set montoMax
      *
      * @param float $montoMax
-     * @return Tipo_compra
+     * @return TipoCompra
      */
     public function setMontoMax($montoMax)
     {
@@ -128,5 +137,38 @@ class TipoCompra
     public function getMontoMax()
     {
         return $this->montoMax;
+    }
+
+    /**
+     * Add pedidoelementos
+     *
+     * @param \App\ComprasBundle\Entity\PedidoElemento $pedidoelementos
+     * @return TipoCompra
+     */
+    public function addPedidoelemento(\App\ComprasBundle\Entity\PedidoElemento $pedidoelementos)
+    {
+        $this->pedidoelementos[] = $pedidoelementos;
+
+        return $this;
+    }
+
+    /**
+     * Remove pedidoelementos
+     *
+     * @param \App\ComprasBundle\Entity\PedidoElemento $pedidoelementos
+     */
+    public function removePedidoelemento(\App\ComprasBundle\Entity\PedidoElemento $pedidoelementos)
+    {
+        $this->pedidoelementos->removeElement($pedidoelementos);
+    }
+
+    /**
+     * Get pedidoelementos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPedidoelementos()
+    {
+        return $this->pedidoelementos;
     }
 }
