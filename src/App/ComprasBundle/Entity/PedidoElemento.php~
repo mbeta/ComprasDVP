@@ -1,0 +1,121 @@
+<?php
+
+namespace App\ComprasBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PedidoElemento
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="App\ComprasBundle\Entity\PedidoElementoRepository")
+ */
+class PedidoElemento
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_pedido", type="date")
+     */
+    private $fechaPedido;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="referencia", type="string", length=500)
+     */
+    private $referencia;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nro_pedido", type="integer")
+     */
+    private $nroPedido;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observacion", type="string", length=500)
+     */
+    private $observacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nro_actuacion", type="string", length=255)
+     */
+    private $nroActuacion;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="autorizado", type="boolean")
+     */
+    private $autorizado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ley", type="string", length=255)
+     */
+    private $ley;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_autorizado", type="date")
+     */
+    private $fechaAutorizado;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="EstadoPedido", inversedBy="pedidoelementos")
+     * @ORM\JoinColumn(name="estadopedido_id", referencedColumnName="id")
+     */
+    protected $estadopedido;
+
+
+    
+     /**
+     * @ORM\ManyToOne(targetEntity="TipoCompra", inversedBy="pedidoelementos")
+     * @ORM\JoinColumn(name="tipocompra_id", referencedColumnName="id")
+     */
+    protected $tipocompra;
+    
+    
+    
+    /**
+     * @ORM\OneToMany(targetEntity="LineaPedidoElemento", mappedBy="pedidoelemento")
+     */
+    protected $lineas;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="TipoCompra", inversedBy="pedidoelementos")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     */
+    protected $usuario;
+    
+    
+
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    
+}

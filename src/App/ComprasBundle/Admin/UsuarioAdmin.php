@@ -8,16 +8,19 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class LineaPedidoElementoAdmin extends Admin
+class UsuarioAdmin extends Admin
 {
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('cantidad')  
-            ->add('precioUnitario')  
-            ->add('articulo', 'entity', array('class' => 'App\ComprasBundle\Entity\Articulo')) 
-            ->add('pedidoelemento', 'entity', array('class' => 'App\ComprasBundle\Entity\PedidoElemento')) 
+            ->add('nombre')  
+            ->add('puesto') 
+            ->add('nombreUsuario')
+            ->add('password')
+            ->add('ubicacion', 'entity', array('class' => 'App\ComprasBundle\Entity\Ubicacion'))
+                
+                
         ;
     }
 
@@ -25,10 +28,12 @@ class LineaPedidoElementoAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('cantidad')  
-            ->add('precioUnitario')  
-            ->add('articulo') 
-            ->add('pedidoelemento')
+            ->add('nombre')  
+            ->add('puesto') 
+            ->add('nombreUsuario')
+            ->add('password')
+            ->add('ubicacion')
+                
         ;
     }
 
@@ -36,11 +41,14 @@ class LineaPedidoElementoAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('cantidad')  
-            ->add('precioUnitario')  
-            ->add('articulo') 
-            ->add('pedidoelemento')
+            ->add('nombre')  
+            ->add('puesto') 
+            ->add('nombreUsuario')
+            ->add('password')
+            ->add('ubicacion')
+                
         ;
     }
+    
+    
 }
-

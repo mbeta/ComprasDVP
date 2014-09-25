@@ -53,3 +53,25 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AppComprasBundle]]
+            
+    sonata.admin.usuario:
+        class: App\ComprasBundle\Admin\UsuarioAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Usuario" }
+        arguments:
+            - ~
+            - App\ComprasBundle\Entity\Usuario
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppComprasBundle]]
+            
+    sonata.admin.estadopedido:
+        class: App\ComprasBundle\Admin\EstadoPedidoAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "EstadoPedido" }
+        arguments:
+            - ~
+            - App\ComprasBundle\Entity\EstadoPedido
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppComprasBundle]]

@@ -97,6 +97,14 @@ class PedidoElemento
      * @ORM\OneToMany(targetEntity="LineaPedidoElemento", mappedBy="pedidoelemento")
      */
     protected $lineas;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="TipoCompra", inversedBy="pedidoelementos")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     */
+    protected $usuario;
+    
+    
 
     
     /**
@@ -109,11 +117,20 @@ class PedidoElemento
         return $this->id;
     }
 
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->lineas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Set fechaPedido
      *
      * @param \DateTime $fechaPedido
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setFechaPedido($fechaPedido)
     {
@@ -136,7 +153,7 @@ class PedidoElemento
      * Set referencia
      *
      * @param string $referencia
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setReferencia($referencia)
     {
@@ -159,7 +176,7 @@ class PedidoElemento
      * Set nroPedido
      *
      * @param integer $nroPedido
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setNroPedido($nroPedido)
     {
@@ -182,7 +199,7 @@ class PedidoElemento
      * Set observacion
      *
      * @param string $observacion
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setObservacion($observacion)
     {
@@ -205,7 +222,7 @@ class PedidoElemento
      * Set nroActuacion
      *
      * @param string $nroActuacion
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setNroActuacion($nroActuacion)
     {
@@ -228,7 +245,7 @@ class PedidoElemento
      * Set autorizado
      *
      * @param boolean $autorizado
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setAutorizado($autorizado)
     {
@@ -251,7 +268,7 @@ class PedidoElemento
      * Set ley
      *
      * @param string $ley
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setLey($ley)
     {
@@ -274,7 +291,7 @@ class PedidoElemento
      * Set fechaAutorizado
      *
      * @param \DateTime $fechaAutorizado
-     * @return Pedido_elemento
+     * @return PedidoElemento
      */
     public function setFechaAutorizado($fechaAutorizado)
     {
@@ -291,5 +308,107 @@ class PedidoElemento
     public function getFechaAutorizado()
     {
         return $this->fechaAutorizado;
+    }
+
+    /**
+     * Set estadopedido
+     *
+     * @param \App\ComprasBundle\Entity\EstadoPedido $estadopedido
+     * @return PedidoElemento
+     */
+    public function setEstadopedido(\App\ComprasBundle\Entity\EstadoPedido $estadopedido = null)
+    {
+        $this->estadopedido = $estadopedido;
+
+        return $this;
+    }
+
+    /**
+     * Get estadopedido
+     *
+     * @return \App\ComprasBundle\Entity\EstadoPedido 
+     */
+    public function getEstadopedido()
+    {
+        return $this->estadopedido;
+    }
+
+    /**
+     * Set tipocompra
+     *
+     * @param \App\ComprasBundle\Entity\TipoCompra $tipocompra
+     * @return PedidoElemento
+     */
+    public function setTipocompra(\App\ComprasBundle\Entity\TipoCompra $tipocompra = null)
+    {
+        $this->tipocompra = $tipocompra;
+
+        return $this;
+    }
+
+    /**
+     * Get tipocompra
+     *
+     * @return \App\ComprasBundle\Entity\TipoCompra 
+     */
+    public function getTipocompra()
+    {
+        return $this->tipocompra;
+    }
+
+    /**
+     * Add lineas
+     *
+     * @param \App\ComprasBundle\Entity\LineaPedidoElemento $lineas
+     * @return PedidoElemento
+     */
+    public function addLinea(\App\ComprasBundle\Entity\LineaPedidoElemento $lineas)
+    {
+        $this->lineas[] = $lineas;
+
+        return $this;
+    }
+
+    /**
+     * Remove lineas
+     *
+     * @param \App\ComprasBundle\Entity\LineaPedidoElemento $lineas
+     */
+    public function removeLinea(\App\ComprasBundle\Entity\LineaPedidoElemento $lineas)
+    {
+        $this->lineas->removeElement($lineas);
+    }
+
+    /**
+     * Get lineas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLineas()
+    {
+        return $this->lineas;
+    }
+
+    /**
+     * Set usuario
+     *
+     * @param \App\ComprasBundle\Entity\TipoCompra $usuario
+     * @return PedidoElemento
+     */
+    public function setUsuario(\App\ComprasBundle\Entity\TipoCompra $usuario = null)
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * Get usuario
+     *
+     * @return \App\ComprasBundle\Entity\TipoCompra 
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
     }
 }

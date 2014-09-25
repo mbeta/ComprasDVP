@@ -54,6 +54,11 @@ class Usuario
      * @ORM\JoinColumn(name="ubicacion_id", referencedColumnName="id")
      */
     protected $ubicacion;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="PedidoElemento", mappedBy="usuario")
+     */
+    protected $pedidoelementos;
 
 
 
@@ -65,6 +70,15 @@ class Usuario
     public function getId()
     {
         return $this->id;
+    }
+
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->pedidoelementos = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -157,5 +171,61 @@ class Usuario
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Set ubicacion
+     *
+     * @param \App\ComprasBundle\Entity\Ubicacion $ubicacion
+     * @return Usuario
+     */
+    public function setUbicacion(\App\ComprasBundle\Entity\Ubicacion $ubicacion = null)
+    {
+        $this->ubicacion = $ubicacion;
+
+        return $this;
+    }
+
+    /**
+     * Get ubicacion
+     *
+     * @return \App\ComprasBundle\Entity\Ubicacion 
+     */
+    public function getUbicacion()
+    {
+        return $this->ubicacion;
+    }
+
+    /**
+     * Add pedidoelementos
+     *
+     * @param \App\ComprasBundle\Entity\PedidoElemento $pedidoelementos
+     * @return Usuario
+     */
+    public function addPedidoelemento(\App\ComprasBundle\Entity\PedidoElemento $pedidoelementos)
+    {
+        $this->pedidoelementos[] = $pedidoelementos;
+
+        return $this;
+    }
+
+    /**
+     * Remove pedidoelementos
+     *
+     * @param \App\ComprasBundle\Entity\PedidoElemento $pedidoelementos
+     */
+    public function removePedidoelemento(\App\ComprasBundle\Entity\PedidoElemento $pedidoelementos)
+    {
+        $this->pedidoelementos->removeElement($pedidoelementos);
+    }
+
+    /**
+     * Get pedidoelementos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPedidoelementos()
+    {
+        return $this->pedidoelementos;
     }
 }

@@ -23,6 +23,8 @@ class PedidoElementoAdmin extends Admin
             ->add('ley')
             ->add('fechaAutorizado')
             ->add('tipocompra', 'entity', array('class' => 'App\ComprasBundle\Entity\TipoCompra'))
+            ->add('estadoPedido', 'entity', array('class' => 'App\ComprasBundle\Entity\estadoPedido'))
+            ->add('usuario', 'entity', array('class' => 'App\ComprasBundle\Entity\Usuario'))
         ;
     }
 
@@ -39,6 +41,8 @@ class PedidoElementoAdmin extends Admin
             ->add('ley')
             ->add('fechaAutorizado')
             ->add('tipocompra')
+            ->add('estadoPedido')  
+            ->add('usuario')
         ;
     }
 
@@ -55,6 +59,8 @@ class PedidoElementoAdmin extends Admin
             ->add('ley')
             ->add('fechaAutorizado')
             ->add('tipocompra') 
+            ->add('estadoPedido')   
+            ->add('usuario')
         ;
     }
     
