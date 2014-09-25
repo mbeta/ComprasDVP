@@ -44,6 +44,24 @@ class Delegacion
         return $this->id;
     }
 
+       
+    /**
+     * Get toString
+     *
+     * @return string 
+     */
+    public function __toString()
+    {
+        return ($this->getDescripcion()) ? : '';
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ubicaciones = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Set descripcion
      *
@@ -66,14 +84,37 @@ class Delegacion
     {
         return $this->descripcion;
     }
-    
+
     /**
-     * Get toString
+     * Add ubicaciones
      *
-     * @return string 
+     * @param \App\ComprasBundle\Entity\Ubicacion $ubicaciones
+     * @return Delegacion
      */
-    public function __toString()
+    public function addUbicacione(\App\ComprasBundle\Entity\Ubicacion $ubicaciones)
     {
-        return ($this->getDescripcion()) ? : '';
+        $this->ubicaciones[] = $ubicaciones;
+
+        return $this;
+    }
+
+    /**
+     * Remove ubicaciones
+     *
+     * @param \App\ComprasBundle\Entity\Ubicacion $ubicaciones
+     */
+    public function removeUbicacione(\App\ComprasBundle\Entity\Ubicacion $ubicaciones)
+    {
+        $this->ubicaciones->removeElement($ubicaciones);
+    }
+
+    /**
+     * Get ubicaciones
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUbicaciones()
+    {
+        return $this->ubicaciones;
     }
 }

@@ -108,6 +108,21 @@ class PedidoElemento
 
     
     /**
+     * @ORM\ManyToMany(targetEntity="PedidoElemento", mappedBy="pedidosabsorbidos")
+     */  
+    protected $absorbidopor;
+    
+     /**
+     * @ORM\ManyToMany(targetEntity="PedidoElemento", inversedBy="absorbidopor")
+     * @ORM\JoinTable(name="Absorbidos",
+     *      joinColumns={@ORM\JoinColumn(name="pedido_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="absorbido_id", referencedColumnName="id")}
+     *      )
+     */  
+    protected $pedidosabsorbidos;
+    
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -117,5 +132,4 @@ class PedidoElemento
         return $this->id;
     }
 
-   
 }

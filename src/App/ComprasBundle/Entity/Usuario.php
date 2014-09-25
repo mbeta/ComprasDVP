@@ -72,7 +72,7 @@ class Usuario
         return $this->id;
     }
 
-    
+   
     /**
      * Constructor
      */

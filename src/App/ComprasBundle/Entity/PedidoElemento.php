@@ -108,6 +108,21 @@ class PedidoElemento
 
     
     /**
+     * @ORM\ManyToMany(targetEntity="PedidoElemento", mappedBy="pedidosabsorbidos")
+     */  
+    protected $absorbidopor;
+    
+     /**
+     * @ORM\ManyToMany(targetEntity="PedidoElemento", inversedBy="absorbidopor")
+     * @ORM\JoinTable(name="Absorbidos",
+     *      joinColumns={@ORM\JoinColumn(name="pedido_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="absorbido_id", referencedColumnName="id")}
+     *      )
+     */  
+    protected $pedidosabsorbidos;
+    
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -117,13 +132,14 @@ class PedidoElemento
         return $this->id;
     }
 
-   
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->lineas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->absorbidopor = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pedidosabsorbidos = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -410,5 +426,71 @@ class PedidoElemento
     public function getUsuario()
     {
         return $this->usuario;
+    }
+
+    /**
+     * Add absorbidopor
+     *
+     * @param \App\ComprasBundle\Entity\PedidoElemento $absorbidopor
+     * @return PedidoElemento
+     */
+    public function addAbsorbidopor(\App\ComprasBundle\Entity\PedidoElemento $absorbidopor)
+    {
+        $this->absorbidopor[] = $absorbidopor;
+
+        return $this;
+    }
+
+    /**
+     * Remove absorbidopor
+     *
+     * @param \App\ComprasBundle\Entity\PedidoElemento $absorbidopor
+     */
+    public function removeAbsorbidopor(\App\ComprasBundle\Entity\PedidoElemento $absorbidopor)
+    {
+        $this->absorbidopor->removeElement($absorbidopor);
+    }
+
+    /**
+     * Get absorbidopor
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAbsorbidopor()
+    {
+        return $this->absorbidopor;
+    }
+
+    /**
+     * Add pedidosabsorbidos
+     *
+     * @param \App\ComprasBundle\Entity\PedidoElemento $pedidosabsorbidos
+     * @return PedidoElemento
+     */
+    public function addPedidosabsorbido(\App\ComprasBundle\Entity\PedidoElemento $pedidosabsorbidos)
+    {
+        $this->pedidosabsorbidos[] = $pedidosabsorbidos;
+
+        return $this;
+    }
+
+    /**
+     * Remove pedidosabsorbidos
+     *
+     * @param \App\ComprasBundle\Entity\PedidoElemento $pedidosabsorbidos
+     */
+    public function removePedidosabsorbido(\App\ComprasBundle\Entity\PedidoElemento $pedidosabsorbidos)
+    {
+        $this->pedidosabsorbidos->removeElement($pedidosabsorbidos);
+    }
+
+    /**
+     * Get pedidosabsorbidos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPedidosabsorbidos()
+    {
+        return $this->pedidosabsorbidos;
     }
 }

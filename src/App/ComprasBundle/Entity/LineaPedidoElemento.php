@@ -61,6 +61,8 @@ class LineaPedidoElemento
         return $this->id;
     }
 
+    
+    
     /**
      * Set cantidad
      *
@@ -106,27 +108,50 @@ class LineaPedidoElemento
     {
         return $this->precioUnitario;
     }
-    
-     /**
-     * Get pedidoelemento
+
+    /**
+     * Set articulo
      *
-     * @return PedidoElemento
+     * @param \App\ComprasBundle\Entity\Articulo $articulo
+     * @return LineaPedidoElemento
      */
-    public function getPedidoElemento()
+    public function setArticulo(\App\ComprasBundle\Entity\Articulo $articulo = null)
     {
-        return $this->pedidoelemento;
+        $this->articulo = $articulo;
+
+        return $this;
     }
-    
+
+    /**
+     * Get articulo
+     *
+     * @return \App\ComprasBundle\Entity\Articulo 
+     */
+    public function getArticulo()
+    {
+        return $this->articulo;
+    }
+
     /**
      * Set pedidoelemento
      *
-     * @param string $pedidoelemento
-     * @return PedidoElemento
+     * @param \App\ComprasBundle\Entity\PedidoElemento $pedidoelemento
+     * @return LineaPedidoElemento
      */
-    public function setPedidoElemento($pedidoelemento)
+    public function setPedidoelemento(\App\ComprasBundle\Entity\PedidoElemento $pedidoelemento = null)
     {
         $this->pedidoelemento = $pedidoelemento;
 
         return $this;
-    } 
+    }
+
+    /**
+     * Get pedidoelemento
+     *
+     * @return \App\ComprasBundle\Entity\PedidoElemento 
+     */
+    public function getPedidoelemento()
+    {
+        return $this->pedidoelemento;
+    }
 }

@@ -52,6 +52,8 @@ class EstadoPedido
         return $this->id;
     }
 
+    
+
     /**
      * Set descripcion
      *
