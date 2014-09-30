@@ -99,7 +99,7 @@ class PedidoElemento
     protected $lineas;
     
     /**
-     * @ORM\ManyToOne(targetEntity="TipoCompra", inversedBy="pedidoelementos")
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="pedidoelementos")
      * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
     protected $usuario;

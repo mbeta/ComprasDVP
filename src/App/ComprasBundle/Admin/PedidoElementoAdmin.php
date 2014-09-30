@@ -22,9 +22,12 @@ class PedidoElementoAdmin extends Admin
             ->add('autorizado')
             ->add('ley')
             ->add('fechaAutorizado')
-            ->add('tipocompra', 'entity', array('class' => 'App\ComprasBundle\Entity\TipoCompra'))
             ->add('estadoPedido', 'entity', array('class' => 'App\ComprasBundle\Entity\estadoPedido'))
+            ->add('tipocompra', 'entity', array('class' => 'App\ComprasBundle\Entity\TipoCompra'))
+            ->add('lineas', 'entity', array('class'=>'App\ComprasBundle\Entity\LineaPedidoElemento'))
             ->add('usuario', 'entity', array('class' => 'App\ComprasBundle\Entity\Usuario'))
+            ->add('absorbidopor', 'entity', array('class'=> 'App\ComprasBundle\Entity\PedidoElemento'))
+            ->add('pedidosabsorbidos', 'entity',array('class'=>'App\ComprasBundle\Entity\PedidoElemento'))
         ;
     }
 
@@ -40,9 +43,12 @@ class PedidoElementoAdmin extends Admin
             ->add('autorizado')
             ->add('ley')
             ->add('fechaAutorizado')
+            ->add('estadoPedido') 
             ->add('tipocompra')
-            ->add('estadoPedido')  
+            ->add('lineas')
             ->add('usuario')
+            ->add('absorbidopor')
+            ->add('pedidosabsorbidos')
         ;
     }
 
@@ -58,9 +64,12 @@ class PedidoElementoAdmin extends Admin
             ->add('autorizado')
             ->add('ley')
             ->add('fechaAutorizado')
+            ->add('estadoPedido') 
             ->add('tipocompra') 
-            ->add('estadoPedido')   
+            ->add('lineas') 
             ->add('usuario')
+            ->add('absorbidopor')
+            ->add('pedidosabsorbidos')
         ;
     }
     
