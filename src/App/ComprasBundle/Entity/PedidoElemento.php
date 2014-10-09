@@ -493,4 +493,8 @@ class PedidoElemento
     {
         return $this->pedidosabsorbidos;
     }
+    
+    public function __toString() {
+    return $this->nroPedido ? $this->nroPedido : '';
+}
 }

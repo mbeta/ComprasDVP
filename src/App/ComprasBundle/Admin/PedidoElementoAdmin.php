@@ -1,78 +1,100 @@
 <?php
-// src/Acme/DemoBundle/Admin/PostAdmin.php
 
 namespace App\ComprasBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 
 class PedidoElementoAdmin extends Admin
 {
-    // Fields to be shown on create/edit forms
-    protected function configureFormFields(FormMapper $formMapper)
-    {
-        $formMapper
-            ->add('fechaPedido')  
-            ->add('referencia') 
-            ->add('nroPedido') 
-            ->add('observacion')
-            ->add('nroActuacion')
-            ->add('autorizado')
-            ->add('ley')
-            ->add('fechaAutorizado')
-            ->add('estadoPedido', 'entity', array('class' => 'App\ComprasBundle\Entity\estadoPedido'))
-            ->add('tipocompra', 'entity', array('class' => 'App\ComprasBundle\Entity\TipoCompra'))
-            ->add('lineas', 'entity', array('class'=>'App\ComprasBundle\Entity\LineaPedidoElemento'))
-            ->add('usuario', 'entity', array('class' => 'App\ComprasBundle\Entity\Usuario'))
-            ->add('absorbidopor', 'entity', array('class'=> 'App\ComprasBundle\Entity\PedidoElemento'))
-            ->add('pedidosabsorbidos', 'entity',array('class'=>'App\ComprasBundle\Entity\PedidoElemento'))
-        ;
-    }
-
-    // Fields to be shown on filter forms
+    /**
+     * @param DatagridMapper $datagridMapper
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('fechaPedido')  
-            ->add('referencia') 
-            ->add('nroPedido') 
+            ->add('nroPedido')
+            ->add('fechaPedido')
+            ->add('referencia')           
             ->add('observacion')
             ->add('nroActuacion')
             ->add('autorizado')
             ->add('ley')
             ->add('fechaAutorizado')
-            ->add('estadoPedido') 
-            ->add('tipocompra')
-            ->add('lineas')
-            ->add('usuario')
-            ->add('absorbidopor')
-            ->add('pedidosabsorbidos')
         ;
     }
 
-    // Fields to be shown on lists
+    /**
+     * @param ListMapper $listMapper
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('fechaPedido')  
-            ->add('referencia') 
-            ->add('nroPedido') 
+            ->addIdentifier('nroPedido')
+            ->add('fechaPedido')
+            ->add('referencia')           
             ->add('observacion')
             ->add('nroActuacion')
             ->add('autorizado')
             ->add('ley')
             ->add('fechaAutorizado')
-            ->add('estadoPedido') 
-            ->add('tipocompra') 
-            ->add('lineas') 
-            ->add('usuario')
-            ->add('absorbidopor')
-            ->add('pedidosabsorbidos')
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'show' => array(),
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ))
         ;
     }
-    
-    
-}
 
+    /**
+     * @param FormMapper $formMapper
+     */
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $formMapper
+            ->with('Cabecera Pedido')
+                ->add('nroPedido')
+                ->add('fechaPedido')
+                ->add('referencia')          
+                ->add('observacion')
+                ->add('nroActuacion')
+                ->add('autorizado')
+                ->add('ley')
+                ->add('fechaAutorizado')
+            ->end()
+            ->with('Detalle Pedido')
+                 ->add('lineas','sonata_type_collection', array('label'=>'Linea'), 
+                                                          array('edit'=>'inLine', 'inLine'=>'table'))
+            ->end()
+                
+        ;
+    }
+
+    /**
+     * @param ShowMapper $showMapper
+     */
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->with('Cabecera Pedido')
+                ->add('nroPedido')
+                ->add('fechaPedido')
+                ->add('referencia')           
+                ->add('observacion')
+                ->add('nroActuacion')
+                ->add('autorizado')
+                ->add('ley')
+                ->add('fechaAutorizado')
+            ->end()
+            ->with('Detalle Pedido')
+                 ->add('lineas','sonata_type_collection', array('label'=>'Linea', 'route'=>array('name'=>'show')), 
+                                                          array('edit'=>'inLine', 'inLine'=>'table'))
+            ->end()
+        ;
+    }
+}

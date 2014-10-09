@@ -73,3 +73,10 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+sonata_admin:
+    title:      Compras DVP
+    title_logo: img/logovialidad.png
+    
+    templates: 
+        show:   AppComprasBundle:Admin:show.html.twing

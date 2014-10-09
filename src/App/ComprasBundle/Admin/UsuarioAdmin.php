@@ -14,7 +14,7 @@ class UsuarioAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('nombre')  
+            ->add('nombre', 'text', array('label' => 'Nombre', 'required' => true) ) 
             ->add('puesto') 
             ->add('nombreUsuario')
             ->add('password')

@@ -154,4 +154,8 @@ class LineaPedidoElemento
     {
         return $this->pedidoelemento;
     }
+    
+    public function __toString() {
+    return $this->id ? $this->id: '';
+}
 }

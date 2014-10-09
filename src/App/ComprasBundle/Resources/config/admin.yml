@@ -32,16 +32,16 @@ services:
         calls:
             - [ setTranslationDomain, [AppComprasBundle]]
    
-    sonata.admin.pedidoelemento:
-        class: App\ComprasBundle\Admin\PedidoElementoAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "PedidoElemento" }
-        arguments:
-            - ~
-            - App\ComprasBundle\Entity\PedidoElemento
-            - ~
-        calls:
-            - [ setTranslationDomain, [AppComprasBundle]]
+#    sonata.admin.pedidoelemento:
+#        class: App\ComprasBundle\Admin\PedidoElementoAdmin
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "PedidoElemento" }
+#        arguments:
+#            - ~
+#            - App\ComprasBundle\Entity\PedidoElemento
+#            - ~
+#        calls:
+#            - [ setTranslationDomain, [AppComprasBundle]]
     
     sonata.admin.tipocompra:
         class: App\ComprasBundle\Admin\TipoCompraAdmin
@@ -75,3 +75,15 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AppComprasBundle]]
+
+    app_compras.admin.pedido_elemento:
+        class: App\ComprasBundle\Admin\PedidoElementoAdmin
+        arguments: [~, App\ComprasBundle\Entity\PedidoElemento, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Entidades", label: PedidoElemento}
+
+    app_compras.admin.linea_pedido_elemento:
+        class: App\ComprasBundle\Admin\LineaPedidoElementoAdmin
+        arguments: [~, App\ComprasBundle\Entity\LineaPedidoElemento, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Entidades", label: LineaPedidoElemento}

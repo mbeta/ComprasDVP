@@ -1,46 +1,67 @@
 <?php
-// src/Acme/DemoBundle/Admin/PostAdmin.php
 
 namespace App\ComprasBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 
 class LineaPedidoElementoAdmin extends Admin
 {
-    // Fields to be shown on create/edit forms
-    protected function configureFormFields(FormMapper $formMapper)
-    {
-        $formMapper
-            ->add('cantidad')  
-            ->add('precioUnitario')  
-            ->add('articulo', 'entity', array('class' => 'App\ComprasBundle\Entity\Articulo')) 
-            ->add('pedidoelemento', 'entity', array('class' => 'App\ComprasBundle\Entity\PedidoElemento')) 
-        ;
-    }
-
-    // Fields to be shown on filter forms
+    /**
+     * @param DatagridMapper $datagridMapper
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('cantidad')  
-            ->add('precioUnitario')  
-            ->add('articulo') 
-            ->add('pedidoelemento')
+            ->add('id')
+            ->add('cantidad')
+            ->add('precioUnitario')
         ;
     }
 
-    // Fields to be shown on lists
+    /**
+     * @param ListMapper $listMapper
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('cantidad')  
-            ->add('precioUnitario')  
-            ->add('articulo') 
-            ->add('pedidoelemento')
+            ->add('id')
+            ->add('cantidad')
+            ->add('precioUnitario')
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'show' => array(),
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ))
+        ;
+    }
+
+    /**
+     * @param FormMapper $formMapper
+     */
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $formMapper
+            ->add('id')
+            ->add('cantidad')
+            ->add('precioUnitario')
+        ;
+    }
+
+    /**
+     * @param ShowMapper $showMapper
+     */
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->add('id')
+            ->add('cantidad')
+            ->add('precioUnitario')
         ;
     }
 }
-
