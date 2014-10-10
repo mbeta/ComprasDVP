@@ -2,6 +2,7 @@
 
 namespace App\ComprasBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="App\ComprasBundle\Entity\UsuarioRepository")
  */
-class Usuario
+class Usuario extends BaseUser
 {
     /**
      * @var integer
@@ -19,35 +20,35 @@ class Usuario
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=100)
      */
-    private $nombre;
+    protected $nombre;
 
     /**
      * @var string
      *
      * @ORM\Column(name="puesto", type="string", length=100)
      */
-    private $puesto;
+    protected $puesto;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nombreUsuario", type="string", length=50)
      */
-    private $nombreUsuario;
+    protected $nombreUsuario;
 
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=25)
      */
-    private $password;
+    protected $password;
     
    /**
      * @ORM\ManyToOne(targetEntity="Ubicacion", inversedBy="usuarios")
