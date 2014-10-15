@@ -57,6 +57,16 @@ class Articulo
     {
         return $this->id;
     }
+    
+    /**
+     * Get toString
+     *
+     * @return string 
+     */
+    public function __toString()
+    {
+        return ($this->getDescripcion()) ? : '';
+    }
 
     /**
      * Set descripcion

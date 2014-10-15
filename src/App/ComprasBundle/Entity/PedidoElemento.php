@@ -494,7 +494,13 @@ class PedidoElemento
         return $this->pedidosabsorbidos;
     }
     
-    public function __toString() {
-    return $this->nroPedido ? $this->nroPedido : '';
-}
+    /**
+     * Get toString
+     *
+     * @return integer 
+     */
+    public function __toInteger()
+    {
+        return ($this->getNroPedido()) ? : '';
+    }
 }

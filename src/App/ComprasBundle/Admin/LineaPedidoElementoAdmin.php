@@ -16,9 +16,10 @@ class LineaPedidoElementoAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
+//            ->add('id')
             ->add('cantidad')
             ->add('precioUnitario')
+            ->add('articulo')
         ;
     }
 
@@ -28,9 +29,10 @@ class LineaPedidoElementoAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
+            ->addIdentifier('id')
             ->add('cantidad')
             ->add('precioUnitario')
+            ->add('articulo')    
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -47,9 +49,10 @@ class LineaPedidoElementoAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
+//            ->addIdentifier('id')
             ->add('cantidad')
             ->add('precioUnitario')
+            ->add('articulo', 'entity', array('class' => 'App\ComprasBundle\Entity\Articulo'))
         ;
     }
 
@@ -59,7 +62,7 @@ class LineaPedidoElementoAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
+//            ->add('id')
             ->add('cantidad')
             ->add('precioUnitario')
         ;

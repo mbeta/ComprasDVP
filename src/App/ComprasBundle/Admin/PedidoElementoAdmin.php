@@ -59,13 +59,17 @@ class PedidoElementoAdmin extends Admin
         $formMapper
             ->with('Cabecera Pedido')
                 ->add('nroPedido')
-                ->add('fechaPedido')
+                ->add('fechaPedido', 'date', 
+                        array('label' => 'Fecha Pedido', 'widget' => 'single_text','required' => false, 
+                            'attr' => array('class' => 'datepicker')))
                 ->add('referencia')          
                 ->add('observacion')
                 ->add('nroActuacion')
                 ->add('autorizado')
                 ->add('ley')
-                ->add('fechaAutorizado')
+                ->add('fechaAutorizado', 'date', 
+                        array('label' => 'Fecha Autorizado', 'widget' => 'single_text','required' => false, 
+                            'attr' => array('class' => 'datepicker')))
             ->end()
             ->with('Detalle Pedido')
                  ->add('lineas','sonata_type_collection', array('label'=>'Linea'), 
