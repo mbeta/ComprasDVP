@@ -31,14 +31,14 @@ class Articulo
     /**
      * @var string
      *
-     * @ORM\Column(name="codigo", type="string", length=25)
+     * @ORM\Column(name="codigo", type="string", length=25, nullable=true)
      */
     private $codigo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="codigoRubro", type="string", length=25)
+     * @ORM\Column(name="codigoRubro", type="string", length=25, nullable=true)
      */
     private $codigoRubro;
     

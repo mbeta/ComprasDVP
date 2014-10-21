@@ -61,7 +61,15 @@ class TipoCompra
         return $this->id;
     }
 
-   
+    /**
+     * Get toString
+     *
+     * @return string 
+     */
+    public function __toString()
+    {
+        return ($this->getDescipcion()) ? : '';
+    }
         /**
      * Constructor
      */

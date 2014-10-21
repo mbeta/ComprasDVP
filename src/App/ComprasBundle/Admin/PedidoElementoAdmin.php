@@ -16,11 +16,14 @@ class PedidoElementoAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nroPedido')
+//            ->add('id')
+            ->add('nroPedido', null, array('label'=>'Nro de Pedido'))
             ->add('fechaPedido')
-            ->add('referencia')           
+            ->add('referencia')          
             ->add('observacion')
             ->add('nroActuacion')
+            ->add('tipocompra', null, array('label'=>'Tipo Compra'))
+            ->add('estadopedido', null, array('label'=>'Estado'))
             ->add('autorizado')
             ->add('ley')
             ->add('fechaAutorizado')
@@ -33,14 +36,17 @@ class PedidoElementoAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('nroPedido')
-            ->add('fechaPedido')
-            ->add('referencia')           
-            ->add('observacion')
-            ->add('nroActuacion')
-            ->add('autorizado')
-            ->add('ley')
-            ->add('fechaAutorizado')
+//            ->add('id')
+            ->addIdentifier('nroPedido', null, array('label'=>'Nro de Pedido'))
+            ->add('fechaPedido', null, array('label'=>'Fecha de Pedido'))
+            ->add('referencia', null, array('label'=>'Referencia'))
+            ->add('observacion', null, array('label'=>'Observación'))
+            ->add('nroActuacion', null, array('label'=>'Nro de Actuación'))
+            ->add('tipocompra', null, array('label'=>'Tipo Compra'))
+            ->add('estadopedido', null, array('label'=>'Estado'))
+            ->add('autorizado', null, array('label'=>'Autorización'))
+            ->add('ley', null, array('label'=>'Ley'))
+            ->add('fechaAutorizado', null, array('label'=>'Fecha Autorizacion'))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -58,24 +64,28 @@ class PedidoElementoAdmin extends Admin
     {
         $formMapper
             ->with('Cabecera Pedido')
-                ->add('nroPedido')
-                ->add('fechaPedido', 'date', 
-                        array('label' => 'Fecha Pedido', 'widget' => 'single_text','required' => false, 
-                            'attr' => array('class' => 'datepicker')))
-                ->add('referencia')          
-                ->add('observacion')
-                ->add('nroActuacion')
-                ->add('autorizado')
-                ->add('ley')
-                ->add('fechaAutorizado', 'date', 
-                        array('label' => 'Fecha Autorizado', 'widget' => 'single_text','required' => false, 
-                            'attr' => array('class' => 'datepicker')))
+//                ->add('id')
+                ->add('nroPedido', null, array('label'=>'Nro de Pedido'))
+                ->add('fechaPedido', 'date',array('label' => 'Fecha Pedido', 
+                                        'widget' => 'single_text','required' => false,
+                                        'attr' => array('class' => 'datepicker')))
+                
+                ->add('referencia', null, array('label'=>'Referencia'))
+                ->add('observacion', null, array('label'=>'Observación'))
+                ->add('nroActuacion', null, array('label'=>'Nro de Actuación'))
+                ->add('tipocompra', null, array('label'=>'Tipo Compra','class'=>'App\ComprasBundle\Entity\TipoCompra',
+                    'read_only'=>true))
+                ->add('estadopedido', null, array('label'=>'Estado', 'class'=>'App\ComprasBundle\Entity\EstadoPedido'))
+                ->add('autorizado', null, array('label'=>'Autorización'))
+                ->add('ley', null, array('label'=>'Ley'))
+                ->add('fechaAutorizado', 'date',array('label' => 'Fecha Autorizado', 
+                                            'widget' => 'single_text','required' => false,
+                                            'attr' => array('class' => 'datepicker')))
             ->end()
             ->with('Detalle Pedido')
-                 ->add('lineas','sonata_type_collection', array('label'=>'Linea'), 
-                                                          array('edit'=>'inLine', 'inLine'=>'table'))
+                ->add('lineas', 'sonata_type_collection', array('label'=>'Lineas'), 
+                        array('edit'=>'inline', 'inline'=>'table'))
             ->end()
-                
         ;
     }
 
@@ -85,20 +95,25 @@ class PedidoElementoAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('Cabecera Pedido')
-                ->add('nroPedido')
-                ->add('fechaPedido')
-                ->add('referencia')           
-                ->add('observacion')
-                ->add('nroActuacion')
-                ->add('autorizado')
-                ->add('ley')
-                ->add('fechaAutorizado')
+         ->with('Cabecera Pedido')      
+//                ->add('id')
+                ->add('nroPedido', null, array('label'=>'Nro de Pedido'))
+                ->add('fechaPedido', null, array('label'=>'Fecha de Pedido'))
+                ->add('referencia', null, array('label'=>'Referencia'))
+                ->add('observacion', null, array('label'=>'Observación'))
+                ->add('nroActuacion', null, array('label'=>'Nro de Actuación'))
+                ->add('tipocompra', null, array('label'=>'Tipo Compra','class'=>'App\ComprasBundle\Entity\TipoCompra',
+                    'read_only'=>true))
+                ->add('estadopedido', null, array('label'=>'Estado'))
+                ->add('autorizado', null, array('label'=>'Autorización'))
+                ->add('ley', null, array('label'=>'Ley'))
+                ->add('fechaAutorizado', null, array('label'=>'Fecha Autorizacion'))
             ->end()
             ->with('Detalle Pedido')
-                 ->add('lineas','sonata_type_collection', array('label'=>'Linea', 'route'=>array('name'=>'show')), 
-                                                          array('edit'=>'inLine', 'inLine'=>'table'))
+                ->add('lineas', 'sonata_type_collection', array('label'=>'Lineas',
+                    'route'=>array('name'=>'show')),array('edit'=>'inline','inline'=>'table'))
             ->end()
+            
         ;
     }
 }

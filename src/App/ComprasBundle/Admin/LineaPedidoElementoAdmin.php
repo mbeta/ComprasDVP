@@ -17,9 +17,9 @@ class LineaPedidoElementoAdmin extends Admin
     {
         $datagridMapper
 //            ->add('id')
-            ->add('cantidad')
-            ->add('precioUnitario')
-            ->add('articulo')
+            ->add('articulo', null, array('label'=>'Artículo'))
+//            ->add('cantidad', null, array('label'=>'Cantidad'))
+//            ->add('precioUnitario', null, array('label'=>'Precio Unitario'))
         ;
     }
 
@@ -29,10 +29,12 @@ class LineaPedidoElementoAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
-            ->add('cantidad')
-            ->add('precioUnitario')
-            ->add('articulo')    
+//            ->add('id')
+            ->add('articulo', null, array('label'=>'Artículo'))
+            ->add('cantidad', null, array('label'=>'Cantidad'))
+            ->add('precioUnitario', null, array('label'=>'Precio Unitario'))
+            ->add('subtotal', 'text', array('label'=>'Subtotal', 'mapped'=>false, 'required'=>false, 
+                'read_only'=>true))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -49,10 +51,14 @@ class LineaPedidoElementoAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-//            ->addIdentifier('id')
-            ->add('cantidad')
-            ->add('precioUnitario')
-            ->add('articulo', 'entity', array('class' => 'App\ComprasBundle\Entity\Articulo'))
+//            ->add('id','sonata_type_model_hidden')
+            ->add('articulo', 'sonata_type_model_autocomplete', array('property'=>'descripcion',
+                'label'=>'Artículo', 'class'=>'App\ComprasBundle\Entity\Articulo', 'max_length' => 200))
+            ->add('cantidad', 'integer', array( 'label'=>'Cantidad'))
+            ->add('precioUnitario', null, array('label'=>'Precio Unitario'))
+            ->add('subtotal', 'text', array('label'=>'Subtotal', 'mapped'=>false, 'required'=>false,
+                'read_only'=>true))
+
         ;
     }
 
@@ -63,8 +69,11 @@ class LineaPedidoElementoAdmin extends Admin
     {
         $showMapper
 //            ->add('id')
-            ->add('cantidad')
-            ->add('precioUnitario')
-        ;
+            ->add('articulo', null, array('label'=>'Artículo'))
+            ->add('cantidad', null, array('label'=>'Cantidad'))
+            ->add('precioUnitario', null, array('label'=>'Precio Unitario'))
+            ->add('subtotal', 'text', array('label'=>'Subtotal', 'mapped'=>false, 'required'=>false, 
+                'read_only'=>true))        
+            ;
     }
 }

@@ -1,89 +1,47 @@
-services:
-    sonata.admin.delegacion:
-        class: App\ComprasBundle\Admin\DelegacionAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Delegacion" }
-        arguments:
-            - ~
-            - App\ComprasBundle\Entity\Delegacion
-            - ~
-        calls:
-            - [ setTranslationDomain, [AppComprasBundle]]
-            
-    sonata.admin.ubicacion:
-        class: App\ComprasBundle\Admin\UbicacionAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Ubicacion" }
-        arguments:
-            - ~
-            - App\ComprasBundle\Entity\Ubicacion
-            - ~
-        calls:
-            - [ setTranslationDomain, [AppComprasBundle]]
-            
-    sonata.admin.articulo:
-        class: App\ComprasBundle\Admin\ArticuloAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Articulo" }
-        arguments:
-            - ~
-            - App\ComprasBundle\Entity\Articulo
-            - ~
-        calls:
-            - [ setTranslationDomain, [AppComprasBundle]]
-   
-#    sonata.admin.pedidoelemento:
-#        class: App\ComprasBundle\Admin\PedidoElementoAdmin
-#        tags:
-#            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "PedidoElemento" }
-#        arguments:
-#            - ~
-#            - App\ComprasBundle\Entity\PedidoElemento
-#            - ~
-#        calls:
-#            - [ setTranslationDomain, [AppComprasBundle]]
-    
-    sonata.admin.tipocompra:
-        class: App\ComprasBundle\Admin\TipoCompraAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "TipoCompra" }
-        arguments:
-            - ~
-            - App\ComprasBundle\Entity\TipoCompra
-            - ~
-        calls:
-            - [ setTranslationDomain, [AppComprasBundle]]
-            
-    sonata.admin.usuario:
-        class: App\ComprasBundle\Admin\UsuarioAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "Usuario" }
-        arguments:
-            - ~
-            - App\ComprasBundle\Entity\Usuario
-            - ~
-        calls:
-            - [ setTranslationDomain, [AppComprasBundle]]
-            
-    sonata.admin.estadopedido:
-        class: App\ComprasBundle\Admin\EstadoPedidoAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Entidades", label: "EstadoPedido" }
-        arguments:
-            - ~
-            - App\ComprasBundle\Entity\EstadoPedido
-            - ~
-        calls:
-            - [ setTranslationDomain, [AppComprasBundle]]
 
-    app_compras.admin.pedido_elemento:
-        class: App\ComprasBundle\Admin\PedidoElementoAdmin
-        arguments: [~, App\ComprasBundle\Entity\PedidoElemento, SonataAdminBundle:CRUD]
+
+services:
+    app_compras.admin.articulo:
+        class: App\ComprasBundle\Admin\ArticuloAdmin
+        arguments: [~, App\ComprasBundle\Entity\Articulo, AppComprasBundle:ArticuloAdmin]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: "Entidades", label: PedidoElemento}
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Articulo}
+        calls:
+#            -[ setTemplate, [show, AppComprasBundle:Articulo:show.html.twig]] 
+#             -[setMapping, [" %ensayo_de_compactacion_mapping% "]]--utilizando parametros
+
+    app_compras.admin.delegacion:
+        class: App\ComprasBundle\Admin\DelegacionAdmin
+        arguments: [~, App\ComprasBundle\Entity\Delegacion, AppComprasBundle:DelegacionAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Delegacion}
+
+    app_compras.admin.estado_pedido:
+        class: App\ComprasBundle\Admin\EstadoPedidoAdmin
+        arguments: [~, App\ComprasBundle\Entity\EstadoPedido, AppComprasBundle:EstadoPedidoAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: EstadoPedido}
 
     app_compras.admin.linea_pedido_elemento:
         class: App\ComprasBundle\Admin\LineaPedidoElementoAdmin
-        arguments: [~, App\ComprasBundle\Entity\LineaPedidoElemento, SonataAdminBundle:CRUD]
+        arguments: [~, App\ComprasBundle\Entity\LineaPedidoElemento, AppComprasBundle:LineaPedidoElementoAdmin]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: "Entidades", label: LineaPedidoElemento}
+            - {name: sonata.admin, manager_type: orm, group: admin, label: LineaPedidoElemento}
+
+    app_compras.admin.pedido_elemento:
+        class: App\ComprasBundle\Admin\PedidoElementoAdmin
+        arguments: [~, App\ComprasBundle\Entity\PedidoElemento, AppComprasBundle:PedidoElementoAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: PedidoElemento}
+
+    app_compras.admin.ubicacion:
+        class: App\ComprasBundle\Admin\UbicacionAdmin
+        arguments: [~, App\ComprasBundle\Entity\Ubicacion, AppComprasBundle:UbicacionAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Ubicacion}
+
+    app_compras.admin.usuario:
+        class: App\ComprasBundle\Admin\UsuarioAdmin
+        arguments: [~, App\ComprasBundle\Entity\Usuario, AppComprasBundle:UsuarioAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Usuario}

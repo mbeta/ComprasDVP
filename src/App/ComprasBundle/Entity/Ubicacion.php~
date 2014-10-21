@@ -33,6 +33,17 @@ class Ubicacion
      * @ORM\JoinColumn(name="delegacion_id", referencedColumnName="id")
      */
     protected $delegacion;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Usuario", mappedBy="ubicacion")
+     */
+    protected $usuarios;
+
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="PedidoElementos", mappedBy="ubicaciones")
+     */
+    private $pedidos;
 
 
     /**
@@ -45,5 +56,14 @@ class Ubicacion
         return $this->id;
     }
 
-    
+    /**
+     * Get toString
+     *
+     * @return string 
+     */
+    public function __toString()
+    {
+        return ($this->getDescripcion()) ? : '';
+    }
+
 }

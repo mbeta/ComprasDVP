@@ -87,7 +87,7 @@ sonata_admin:
     title_logo: img/logovialidad.png
     
     templates: 
-        show:   AppComprasBundle:Admin:show.html.twing
+#        show:   AppComprasBundle:Admin:show.html.twing
         
         
 sonata_user:

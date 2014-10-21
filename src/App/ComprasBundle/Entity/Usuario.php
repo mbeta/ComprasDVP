@@ -81,7 +81,17 @@ class Usuario extends BaseUser
     {
         $this->pedidoelementos = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
+    /**
+     * Get toString
+     *
+     * @return string 
+     */
+    public function __toString()
+    {
+        return ($this->getNombreUsuario()) ? : '';
+    }
+    
     /**
      * Set nombre
      *

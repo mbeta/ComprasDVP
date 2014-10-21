@@ -45,35 +45,35 @@ class PedidoElemento
     /**
      * @var string
      *
-     * @ORM\Column(name="observacion", type="string", length=500)
+     * @ORM\Column(name="observacion", type="string", length=500, nullable=true)
      */
     private $observacion;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nro_actuacion", type="string", length=255)
+     * @ORM\Column(name="nro_actuacion", type="string", length=255, nullable=true)
      */
     private $nroActuacion;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="autorizado", type="boolean")
+     * @ORM\Column(name="autorizado", type="boolean", nullable=true)
      */
     private $autorizado;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ley", type="string", length=255)
+     * @ORM\Column(name="ley", type="string", length=255, nullable=true)
      */
     private $ley;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_autorizado", type="date")
+     * @ORM\Column(name="fecha_autorizado", type="date", nullable=true)
      */
     private $fechaAutorizado;
     
@@ -94,7 +94,7 @@ class PedidoElemento
     
     
     /**
-     * @ORM\OneToMany(targetEntity="LineaPedidoElemento", mappedBy="pedidoelemento")
+     * @ORM\OneToMany(targetEntity="LineaPedidoElemento", mappedBy="pedidoelemento", cascade={"all"}, orphanRemoval=true)
      */
     protected $lineas;
     
@@ -121,6 +121,25 @@ class PedidoElemento
      */  
     protected $pedidosabsorbidos;
     
+     /**
+     * @ORM\ManyToMany(targetEntity="Ubicacion", inversedBy="pedidos")
+     * @ORM\JoinTable(name="Ubicacionespedido",
+     *      joinColumns={@ORM\JoinColumn(name="pedido_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="ubicacion_id", referencedColumnName="id")}
+     *      )
+     */
+    private $ubicaciones;
+    
+    
+      /**
+     * Get toString
+     *
+     * @return integer 
+     */
+    public function __toInteger()
+    {
+        return ($this->getNroPedido()) ? : '';
+    }
     
     /**
      * Get id
@@ -131,7 +150,8 @@ class PedidoElemento
     {
         return $this->id;
     }
-
+    
+    
     /**
      * Constructor
      */
@@ -140,6 +160,7 @@ class PedidoElemento
         $this->lineas = new \Doctrine\Common\Collections\ArrayCollection();
         $this->absorbidopor = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pedidosabsorbidos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ubicaciones = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -408,10 +429,10 @@ class PedidoElemento
     /**
      * Set usuario
      *
-     * @param \App\ComprasBundle\Entity\TipoCompra $usuario
+     * @param \App\ComprasBundle\Entity\Usuario $usuario
      * @return PedidoElemento
      */
-    public function setUsuario(\App\ComprasBundle\Entity\TipoCompra $usuario = null)
+    public function setUsuario(\App\ComprasBundle\Entity\Usuario $usuario = null)
     {
         $this->usuario = $usuario;
 
@@ -421,7 +442,7 @@ class PedidoElemento
     /**
      * Get usuario
      *
-     * @return \App\ComprasBundle\Entity\TipoCompra 
+     * @return \App\ComprasBundle\Entity\Usuario 
      */
     public function getUsuario()
     {
@@ -493,14 +514,37 @@ class PedidoElemento
     {
         return $this->pedidosabsorbidos;
     }
-    
+
     /**
-     * Get toString
+     * Add ubicaciones
      *
-     * @return integer 
+     * @param \App\ComprasBundle\Entity\Ubicacion $ubicaciones
+     * @return PedidoElemento
      */
-    public function __toInteger()
+    public function addUbicacione(\App\ComprasBundle\Entity\Ubicacion $ubicaciones)
     {
-        return ($this->getNroPedido()) ? : '';
+        $this->ubicaciones[] = $ubicaciones;
+
+        return $this;
+    }
+
+    /**
+     * Remove ubicaciones
+     *
+     * @param \App\ComprasBundle\Entity\Ubicacion $ubicaciones
+     */
+    public function removeUbicacione(\App\ComprasBundle\Entity\Ubicacion $ubicaciones)
+    {
+        $this->ubicaciones->removeElement($ubicaciones);
+    }
+
+    /**
+     * Get ubicaciones
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUbicaciones()
+    {
+        return $this->ubicaciones;
     }
 }

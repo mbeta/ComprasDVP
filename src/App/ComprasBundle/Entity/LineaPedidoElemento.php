@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * LineaPedidoElemento
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="App\ComprasBundle\Entity\LineaPedidoElementoRepository")
+ * @ORM\Entity(repositoryClass="LineaPedidoElementoRepository")
  */
 class LineaPedidoElemento
 {
@@ -29,7 +29,7 @@ class LineaPedidoElemento
     private $cantidad;
 
     /**
-     * @var string
+     * @var decimal
      *
      * @ORM\Column(name="precioUnitario", type="decimal")
      */
@@ -48,10 +48,52 @@ class LineaPedidoElemento
      */
     protected $pedidoelemento;
     
+    /**
+     * @var decimal
+     *
+     */
+    protected $subtotal = 0;
     
     
+    
+    
+
+
+    /**
+     * Get subtotal
+     *
+     * @return string 
+     */
+    public function getSubtotal()
+    {
+        $this->subtotal = ($this->cantidad * $this->precioUnitario);
+        
+        return $this-> subtotal;
+        
+        
+    }
     
     /**
+     * Set subtotal
+     * 
+     */
+//    private function calcularSubtotal()
+//    {
+//       
+////        if(($this->cantidad == null)){
+////            $this->subtotal = 0;
+////        }elseif($this->precioUnitario==null){
+////                $this->subtotal=0;
+////            }else{
+////                $this->subtotal=($this->cantidad * $this->precioUnitario);
+////            
+////        }
+////            
+//        
+//    }
+    
+    
+        /**
      * Get id
      *
      * @return integer 
@@ -60,7 +102,6 @@ class LineaPedidoElemento
     {
         return $this->id;
     }
-
     
     
     /**
@@ -72,7 +113,7 @@ class LineaPedidoElemento
     public function setCantidad($cantidad)
     {
         $this->cantidad = $cantidad;
-
+//        $this->calcularSubtotal();
         return $this;
     }
 
@@ -84,6 +125,7 @@ class LineaPedidoElemento
     public function getCantidad()
     {
         return $this->cantidad;
+        
     }
 
     /**
@@ -95,7 +137,7 @@ class LineaPedidoElemento
     public function setPrecioUnitario($precioUnitario)
     {
         $this->precioUnitario = $precioUnitario;
-
+//        $this->calcularSubtotal();
         return $this;
     }
 
@@ -112,10 +154,10 @@ class LineaPedidoElemento
     /**
      * Set articulo
      *
-     * @param \App\ComprasBundle\Entity\Articulo $articulo
+     * @param Articulo $articulo
      * @return LineaPedidoElemento
      */
-    public function setArticulo(\App\ComprasBundle\Entity\Articulo $articulo = null)
+    public function setArticulo(Articulo $articulo = null)
     {
         $this->articulo = $articulo;
 
@@ -125,7 +167,7 @@ class LineaPedidoElemento
     /**
      * Get articulo
      *
-     * @return \App\ComprasBundle\Entity\Articulo 
+     * @return Articulo 
      */
     public function getArticulo()
     {
@@ -135,10 +177,10 @@ class LineaPedidoElemento
     /**
      * Set pedidoelemento
      *
-     * @param \App\ComprasBundle\Entity\PedidoElemento $pedidoelemento
+     * @param PedidoElemento $pedidoelemento
      * @return LineaPedidoElemento
      */
-    public function setPedidoelemento(\App\ComprasBundle\Entity\PedidoElemento $pedidoelemento = null)
+    public function setPedidoelemento(PedidoElemento $pedidoelemento = null)
     {
         $this->pedidoelemento = $pedidoelemento;
 
@@ -148,14 +190,29 @@ class LineaPedidoElemento
     /**
      * Get pedidoelemento
      *
-     * @return \App\ComprasBundle\Entity\PedidoElemento 
+     * @return PedidoElemento 
      */
     public function getPedidoelemento()
     {
         return $this->pedidoelemento;
     }
     
-    public function __toString() {
+    
+     /**
+     * Get toString
+     *
+     * @return integer 
+     */
+    public function __toInteger() {
     return $this->id ? $this->id: '';
-}
+    }
+
+     /**
+     * Get toString
+     *
+     * @return string
+     */
+    public function __toString() {
+    return $this->articulo ? $this->articulo: '';
+    }
 }

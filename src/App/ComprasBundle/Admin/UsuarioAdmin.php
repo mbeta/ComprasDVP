@@ -1,54 +1,75 @@
 <?php
-// src/Acme/DemoBundle/Admin/PostAdmin.php
 
 namespace App\ComprasBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 
 class UsuarioAdmin extends Admin
 {
-    // Fields to be shown on create/edit forms
-    protected function configureFormFields(FormMapper $formMapper)
-    {
-        $formMapper
-            ->add('nombre', 'text', array('label' => 'Nombre', 'required' => true) ) 
-            ->add('puesto') 
-            ->add('nombreUsuario')
-            ->add('password')
-            ->add('ubicacion', 'entity', array('class' => 'App\ComprasBundle\Entity\Ubicacion'))
-                
-                
-        ;
-    }
-
-    // Fields to be shown on filter forms
+    /**
+     * @param DatagridMapper $datagridMapper
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nombre')  
-            ->add('puesto') 
+            ->add('id')
+            ->add('nombre')
+            ->add('puesto')
             ->add('nombreUsuario')
             ->add('password')
-            ->add('ubicacion')
-                
         ;
     }
 
-    // Fields to be shown on lists
+    /**
+     * @param ListMapper $listMapper
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('nombre')  
-            ->add('puesto') 
+            ->add('id')
+            ->add('nombre')
+            ->add('puesto')
             ->add('nombreUsuario')
             ->add('password')
-            ->add('ubicacion')
-                
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'show' => array(),
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ))
         ;
     }
-    
-    
+
+    /**
+     * @param FormMapper $formMapper
+     */
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $formMapper
+            ->add('id')
+            ->add('nombre')
+            ->add('puesto')
+            ->add('nombreUsuario')
+            ->add('password')
+        ;
+    }
+
+    /**
+     * @param ShowMapper $showMapper
+     */
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->add('id')
+            ->add('nombre')
+            ->add('puesto')
+            ->add('nombreUsuario')
+            ->add('password')
+        ;
+    }
 }
