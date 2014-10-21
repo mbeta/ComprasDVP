@@ -213,6 +213,7 @@ class LineaPedidoElemento
      * @return string
      */
     public function __toString() {
-    return $this->articulo ? $this->articulo: '';
+//    return (string) $this->getArticulo()->getDescripcion() ? $this->getArticulo()->getDescripcion(): '--';
+     return 'Linea ' . ( (string) $this->id ? (string) $this->id: '');  
     }
 }

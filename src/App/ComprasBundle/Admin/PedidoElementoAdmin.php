@@ -112,7 +112,11 @@ class PedidoElementoAdmin extends Admin
             ->end()
             ->with('Detalle Pedido')
                 ->add('lineas', 'sonata_type_collection', array('label'=>'Lineas',
-                    'route'=>array('name'=>'show')),array('edit'=>'inline','inline'=>'table'))
+                    'route'=>array('name'=>'show')),array('edit'=>'inline',
+                                                            'inline'=>'table'))
+                
+          
+              
             ->end()
             
         ;
