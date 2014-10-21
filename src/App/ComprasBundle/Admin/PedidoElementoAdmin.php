@@ -121,4 +121,26 @@ class PedidoElementoAdmin extends Admin
             
         ;
     }
+    
+    
+    
+      //code…
+ 
+    public function prePersist($pedido) {
+        //code ...
+ 
+        foreach ($pedido->getLineas() as $linea) {
+            $linea->setPedidoElemento($pedido);
+
+ 
+        }        
+    }
+ 
+    public function preUpdate($pedido) {
+        //code ...
+ 
+        foreach ($pedido->getLineas() as $linea) {
+            $linea->setPedidoElemento($pedido);
+        }
+    }
 }
