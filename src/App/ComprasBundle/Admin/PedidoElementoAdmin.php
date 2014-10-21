@@ -73,11 +73,13 @@ class PedidoElementoAdmin extends Admin
                 ->add('referencia', null, array('label'=>'Referencia'))
                 ->add('observacion', null, array('label'=>'Observación'))
                 ->add('nroActuacion', null, array('label'=>'Nro de Actuación'))
-                ->add('tipocompra', null, array('label'=>'Tipo Compra','class'=>'App\ComprasBundle\Entity\TipoCompra',
-                    'read_only'=>true))
+                ->add('tipocompra', null, array('label'=>'Tipo Compra', 'read_only'=>true, 'disabled' => true))
                 ->add('estadopedido', null, array('label'=>'Estado', 'class'=>'App\ComprasBundle\Entity\EstadoPedido'))
                 ->add('autorizado', null, array('label'=>'Autorización'))
-                ->add('ley', null, array('label'=>'Ley'))
+                ->add('ley', 'choice', array('label'=>'Ley',     'choices'=>array(
+                                                    '3308'=>'Ley Obras Publicas', 
+                                                    '1050'=>'Ley Contratacion'),
+                                              'required' => false))
                 ->add('fechaAutorizado', 'date',array('label' => 'Fecha Autorizado', 
                                             'widget' => 'single_text','required' => false,
                                             'attr' => array('class' => 'datepicker')))
@@ -102,8 +104,7 @@ class PedidoElementoAdmin extends Admin
                 ->add('referencia', null, array('label'=>'Referencia'))
                 ->add('observacion', null, array('label'=>'Observación'))
                 ->add('nroActuacion', null, array('label'=>'Nro de Actuación'))
-                ->add('tipocompra', null, array('label'=>'Tipo Compra','class'=>'App\ComprasBundle\Entity\TipoCompra',
-                    'read_only'=>true))
+                ->add('tipocompra', null, array('label'=>'Tipo Compra'))
                 ->add('estadopedido', null, array('label'=>'Estado'))
                 ->add('autorizado', null, array('label'=>'Autorización'))
                 ->add('ley', null, array('label'=>'Ley'))
