@@ -38,14 +38,14 @@ twig:
     strict_variables: "%kernel.debug%"
     form:
         resources:
-            # ...
+            # ...           
             - 'SonataCoreBundle:Form:datepicker.html.twig'
 
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [ AppComprasBundle ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -53,7 +53,18 @@ assetic:
         #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
         #yui_css:
         #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
-
+    assets:
+        js_template:
+            inputs:                
+                - '@AppComprasBundle/Resources/views/Template/js/libs/jquery-1.8.3.min.js'
+                - '@AppComprasBundle/Resources/views/Template/js/libs/jquery-ui-1.10.0.custom.min.js'
+                - '@AppComprasBundle/Resources/views/Template/js/libs/bootstrap.min.js'
+                - '@AppComprasBundle/Resources/views/Template/js/plugins/flot/jquery.flot.js'
+                - '@AppComprasBundle/Resources/views/Template/js/plugins/flot/jquery.flot.pie.js'
+                - '@AppComprasBundle/Resources/views/Template/js/plugins/flot/jquery.flot.resize.js'
+                - '@AppComprasBundle/Resources/views/Template/js/Application.js'
+                - '@AppComprasBundle/Resources/views/Template/js/charts/area.js'
+                - '@AppComprasBundle/Resources/views/Template/js/charts/donut.js'
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -106,3 +117,10 @@ fos_user:
 
     service:
         user_manager: sonata.user.orm.user_manager  
+        
+# Knp MenuBundle
+knp_menu:
+    twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
+        template: knp_menu.html.twig
+    templating: false # if true, enables the helper for PHP templates
+    default_renderer: twig # The renderer to use, list is also available by defaul        
