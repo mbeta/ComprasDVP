@@ -8,7 +8,9 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
+
 class PedidoElementoAdmin extends Admin
+
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -40,13 +42,15 @@ class PedidoElementoAdmin extends Admin
             ->addIdentifier('nroPedido', null, array('label'=>'Nro de Pedido'))
             ->add('fechaPedido', null, array('label'=>'Fecha de Pedido'))
             ->add('referencia', null, array('label'=>'Referencia'))
-            ->add('observacion', null, array('label'=>'Observación'))
+//            ->add('observacion', null, array('label'=>'Observación'))
             ->add('nroActuacion', null, array('label'=>'Nro de Actuación'))
             ->add('tipocompra', null, array('label'=>'Tipo Compra'))
             ->add('estadopedido', null, array('label'=>'Estado'))
             ->add('autorizado', null, array('label'=>'Autorización'))
             ->add('ley', null, array('label'=>'Ley'))
             ->add('fechaAutorizado', null, array('label'=>'Fecha Autorizacion'))
+            ->add('total', 'text', array( 'mapped'=>false, 'required'=>false,
+                'disabled'=>true, 'read_only'=>true))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -62,6 +66,10 @@ class PedidoElementoAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+     
+        
+        
+        
         $formMapper
             ->with('Cabecera Pedido')
 //                ->add('id')
@@ -76,7 +84,7 @@ class PedidoElementoAdmin extends Admin
                 ->add('tipocompra', null, array('label'=>'Tipo Compra', 'read_only'=>true, 'disabled' => true))
                 ->add('estadopedido', null, array('label'=>'Estado', 'class'=>'App\ComprasBundle\Entity\EstadoPedido'))
                 ->add('autorizado', null, array('label'=>'Autorización'))
-                ->add('ley', 'choice', array('label'=>'Ley',     'choices'=>array(
+                ->add('ley', 'choice', array('label'=>'Ley','choices'=>array(
                                                     '3308'=>'Ley Obras Publicas', 
                                                     '1050'=>'Ley Contratacion'),
                                               'required' => false))
@@ -84,9 +92,19 @@ class PedidoElementoAdmin extends Admin
                                             'widget' => 'single_text','required' => false,
                                             'attr' => array('class' => 'datepicker')))
             ->end()
-            ->with('Detalle Pedido')
+            ->with('Detalle Pedido',array('collapsed' => true))
                 ->add('lineas', 'sonata_type_collection', array('label'=>'Lineas'), 
                         array('edit'=>'inline', 'inline'=>'table'))
+            ->end()
+                
+            ->with('Pedidos Absordidos')
+//                ->add('pedidosabsorbidos', 'sonata_type_collection', array('label'=>'Nro Pedido'))
+                ->add('pedidosabsorbidos')
+            ->end()
+                
+            ->with('Total')
+                ->add('total', 'text', array(  'required'=>false,
+                'disabled'=>false, 'read_only'=>true))  
             ->end()
         ;
     }
@@ -97,7 +115,7 @@ class PedidoElementoAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-         ->with('Cabecera Pedido')      
+            ->with('Cabecera Pedido')      
 //                ->add('id')
                 ->add('nroPedido', null, array('label'=>'Nro de Pedido'))
                 ->add('fechaPedido', null, array('label'=>'Fecha de Pedido'))
@@ -110,7 +128,7 @@ class PedidoElementoAdmin extends Admin
                 ->add('ley', null, array('label'=>'Ley'))
                 ->add('fechaAutorizado', null, array('label'=>'Fecha Autorizacion'))
             ->end()
-            ->with('Detalle Pedido')
+            ->with('Detalle Pedido', array('collapsed' => true))
                 ->add('lineas', 'sonata_type_collection', array('label'=>'Lineas',
                     'route'=>array('name'=>'show')),array('edit'=>'inline',
                                                             'inline'=>'table'))
@@ -118,6 +136,13 @@ class PedidoElementoAdmin extends Admin
           
               
             ->end()
+             ->with('Total')
+                
+              ->add('total', null, array( 'mapped'=>false, 'required'=>false,
+                'disabled'=>true, 'read_only'=>true))
+                
+             ->end()
+          
             
         ;
     }
@@ -127,20 +152,28 @@ class PedidoElementoAdmin extends Admin
       //code…
  
     public function prePersist($pedido) {
-        //code ...
- 
+        //asigno id de pedido de elemento en las lineas para las claves foraneas
         foreach ($pedido->getLineas() as $linea) {
             $linea->setPedidoElemento($pedido);
-
- 
+                 
         }        
     }
- 
+//    
+//    public function postPersist($object) {
+//       
+//        
+//        
+//    }
+
+
     public function preUpdate($pedido) {
         //code ...
- 
         foreach ($pedido->getLineas() as $linea) {
             $linea->setPedidoElemento($pedido);
         }
+    }
+    
+    public function postUpdate($pedido) {
+       $lineas=$pedido->getLineas();
     }
 }

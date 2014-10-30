@@ -52,7 +52,7 @@ class LineaPedidoElemento
      * @var decimal
      *
      */
-    protected $subtotal = 0;
+
     
     
     
@@ -66,31 +66,19 @@ class LineaPedidoElemento
      */
     public function getSubtotal()
     {
-        $this->subtotal = ($this->cantidad * $this->precioUnitario);
-        
-        return $this-> subtotal;
-        
-        
+       return ($this->cantidad * $this->precioUnitario);  
     }
     
-    /**
+      /**
      * Set subtotal
-     * 
+     *
+     * @return string 
      */
-//    private function calcularSubtotal()
-//    {
-//       
-////        if(($this->cantidad == null)){
-////            $this->subtotal = 0;
-////        }elseif($this->precioUnitario==null){
-////                $this->subtotal=0;
-////            }else{
-////                $this->subtotal=($this->cantidad * $this->precioUnitario);
-////            
-////        }
-////            
-//        
-//    }
+    public function setSubtotal()
+    {
+        $this->getSubtotal();
+    }
+    
     
     
         /**

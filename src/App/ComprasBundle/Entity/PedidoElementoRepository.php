@@ -12,4 +12,38 @@ use Doctrine\ORM\EntityRepository;
  */
 class PedidoElementoRepository extends EntityRepository
 {
+    
+    
+public function calcularTipoCompra($idPedidoElemento)
+    {
+        
+
+        
+    }    
+    
+ public function  calcularTotal($idPedido)
+         {
+  
+     $query= $this->getEntityManager()->createQuery(
+     'select sum(LineaPedidoElemento.cantidad * LineaPedidoElemento.preciounitario)
+        from AppComprasBundle:PedidoElemento inner join AppComprasBundle:LineaPedidoElemento 
+            on LineaPedidoElemento.pedidoelemento_id=PedidoElemento.id
+        where PedidoElemento.id = :id '   
+    )->setParameter('id',$idPedido);
+
+    try {
+        return $query->getSingleResult();
+    } catch (\Doctrine\ORM\NoResultException $e) {
+        return null;
+    }
+ }
+ 
+ 
+//  public function findAllOrderedByName()
+//    {
+//        return $this->getEntityManager()
+//            ->createQuery('SELECT p FROM AcmeStoreBundle:Product p ORDER BY p.name ASC')
+//            ->getResult();
+//}
+ 
 }

@@ -3,6 +3,9 @@
 namespace App\ComprasBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\ComprasBundle\Entity\PedidoElementoRepository ;
+use Doctrine\ORM\EntityRepository;
+
 
 /**
  * PedidoElemento
@@ -140,6 +143,37 @@ class PedidoElemento
     {
         return ($this->getNroPedido()) ? : '';
     }
+    
+          /**
+     * Get toString
+     *
+     * @return string 
+     */
+    public function __toString()
+    {
+        return (String)($this->getNroPedido()) ? : '';
+    }
+    
+       /**
+     * Get toString
+     *
+     * @return integer 
+     */
+    public function getTotal()
+    {
+        $lineas = $this->getLineas();
+        $total = 0;
+        foreach ($lineas as $linea) {
+//            $total = $linea->getCantidad() * $linea->getPrecioUnitario();
+            $total=$total+($linea->getCantidad() * $linea->getPrecioUnitario());
+        }
+           return sprintf('%01.2f', $total);  
+    }
+    
+    public function setTotal(){
+        $this->getTotal();
+    }
+    
     
     /**
      * Get id

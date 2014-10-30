@@ -53,10 +53,10 @@ class LineaPedidoElementoAdmin extends Admin
         $formMapper
 //            ->add('id','sonata_type_model_hidden')
             ->add('articulo', 'sonata_type_model_autocomplete', array('property'=>'descripcion',
-                'label'=>'Artículo', 'class'=>'App\ComprasBundle\Entity\Articulo', 'max_length' => 200))
+                'label'=>'Artículo', 'class'=>'App\ComprasBundle\Entity\Articulo'))
             ->add('cantidad', 'integer', array( 'label'=>'Cantidad'))
             ->add('precioUnitario', null, array('label'=>'Precio Unitario'))
-            ->add('subtotal', 'text', array('label'=>'Subtotal', 'mapped'=>false, 'required'=>false,
+            ->add('subtotal', 'text', array('label'=>'Subtotal', 'required'=>false,
                 'read_only'=>true))
 
         ;
