@@ -8,36 +8,63 @@
 
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />    
-
-            {% stylesheets '@AppComprasBundle/Resources/views/Template/css/base-admin-2-responsive.css' filter="cssrewrite" %}
-                    <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
-            {% endstylesheets %}
-            {% stylesheets '@AppComprasBundle/Resources/views/Template/css/base-admin-2.css' filter="cssrewrite" %}
-                    <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
-            {% endstylesheets %}
-            {% stylesheets '@AppComprasBundle/Resources/views/Template/css/custom.css' filter="cssrewrite" %}
-                    <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
-            {% endstylesheets %}
-            {% stylesheets '@AppComprasBundle/Resources/views/Template/css/font-awesome.min.css' filter="cssrewrite" %}
-                    <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
-            {% endstylesheets %}
-            {% stylesheets '@AppComprasBundle/Resources/views/Template/css/bootstrap-responsive.min.css' filter="cssrewrite" %}
-                    <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
-            {% endstylesheets %}
-            {% stylesheets '@AppComprasBundle/Resources/views/Template/css/bootstrap.min.css' filter="cssrewrite" %}
-                    <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
-            {% endstylesheets %}
-
-
-            <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-            <!--[if lt IE 9]>
-              <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-            <![endif]-->
+                        
+                {% block styles %}      
+                    <!-- CSS Template -->                                            
+                    {% stylesheets '@AppComprasBundle/Resources/views/Template/css/base-admin-2-responsive.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+                    {% endstylesheets %}
+                    {% stylesheets '@AppComprasBundle/Resources/views/Template/css/base-admin-2.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+                    {% endstylesheets %}
+                    {% stylesheets '@AppComprasBundle/Resources/views/Template/css/bootstrap.min.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+                    {% endstylesheets %}
+                    {% stylesheets '@AppComprasBundle/Resources/views/Template/css/font-awesome.min.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />                            
+                    {% endstylesheets %}
+                    {% stylesheets '@AppComprasBundle/Resources/views/Template/css/bootstrap-responsive.min.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+                    {% endstylesheets %}  
+                    {% stylesheets '@AppComprasBundle/Resources/views/Template/css/custom.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+                    {% endstylesheets %}         
+                    <!-- CSS Sonata -->            
+                    {% stylesheets '@AppComprasBundle/Resources/css/layout.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+                    {% endstylesheets %}
+                    {% stylesheets '@AppComprasBundle/Resources/css/styles.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />            
+                    {% endstylesheets %}
+                    {% stylesheets '@AppComprasBundle/Resources/css/AdminLTE/css/ionicons.min.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />            
+                    {% endstylesheets %} 
+                    {% stylesheets '@AppComprasBundle/Resources/css/AdminLTE/css/AdminLTE.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+                    {% endstylesheets %}
+                    {% stylesheets '@AppComprasBundle/Resources/css/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />            
+                    {% endstylesheets %}
+                    {% stylesheets '@AppComprasBundle/Resources/css/jqueryui/themes/base/jquery-ui.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+                    {% endstylesheets %}
+                    {% stylesheets '@AppComprasBundle/Resources/css/select2/select2.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+                    {% endstylesheets %}
+                    {% stylesheets '@AppComprasBundle/Resources/css/select2/select2-bootstrap.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+                    {% endstylesheets %}
+                    {% stylesheets '@AppComprasBundle/Resources/css/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css' filter="cssrewrite" %}
+                            <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+                    {% endstylesheets %}
+                    
+                    
+                {% endblock %}                
 
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
         {% endblock %}
-        
+                               
     </head>
         
     <body>
@@ -103,7 +130,19 @@
                                         <li><a href="http://localhost/ComprasDVP/web/app_dev.php/admin/app/compras/ubicacion/list">Listar</a></li>                                    
                                     </ul> 				
                                 </li>
+                                
+                                <li class="dropdown">					
+                                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="icon-th"></i>
+                                        <span>Pedidos Elementos</span>
+                                        <b class="caret"></b>
+                                    </a>	    
 
+                                    <ul class="dropdown-menu">
+                                        <li><a href="http://localhost/ComprasDVP/web/app_dev.php/admin/app/compras/pedidoelemento/create">Nuevo Pedido</a></li>
+                                        <li><a href="http://localhost/ComprasDVP/web/app_dev.php/admin/app/compras/pedidoelemento/list">Listar</a></li>                                    
+                                    </ul> 				
+                                </li>
 
                             </ul>
                         </div> <!-- /.subnav-collapse -->
@@ -115,7 +154,7 @@
             </div> <!-- /subnavbar -->
 
 
-            <div class="main">
+            <div class="container">
 
                 {% block main %}
 

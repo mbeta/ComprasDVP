@@ -45,7 +45,10 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ AppComprasBundle ]
+    bundles:       
+        - AppComprasBundle
+        - SonataAdminBundle
+        
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -64,7 +67,24 @@ assetic:
                 - '@AppComprasBundle/Resources/views/Template/js/plugins/flot/jquery.flot.resize.js'
                 - '@AppComprasBundle/Resources/views/Template/js/Application.js'
                 - '@AppComprasBundle/Resources/views/Template/js/charts/area.js'
-                - '@AppComprasBundle/Resources/views/Template/js/charts/donut.js'
+                - '@AppComprasBundle/Resources/views/Template/js/charts/donut.js'                
+        js_sonata:
+            inputs:
+                - '@AppComprasBundle/Resources/jquery/dist/jquery.min.js'
+                - '@AppComprasBundle/Resources/jquery.scrollTo/jquery.scrollTo.min.js'
+                - '@AppComprasBundle/Resources/moment/min/moment.min.js'
+                - '@AppComprasBundle/Resources/bootstrap/dist/js/bootstrap.min.js'
+                - '@AppComprasBundle/Resources/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+                - '@AppComprasBundle/Resources/jqueryui/ui/minified/jquery-ui.min.js'
+                - '@AppComprasBundle/Resources/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js'
+                - '@AppComprasBundle/Resources/jquery/jquery.form.js'
+                - '@AppComprasBundle/Resources/jquery/jquery.confirmExit.js'
+                - '@AppComprasBundle/Resources/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js'
+                - '@AppComprasBundle/Resources/select2/select2.min.js'
+                - '@AppComprasBundle/Resources/select2/select2_locale_es.js'
+                - '@AppComprasBundle/Resources/App.js'
+                - '@AppComprasBundle/Resources/Admin.js'
+                
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -97,7 +117,8 @@ sonata_admin:
     title:      Compras DVP
     title_logo: img/logovialidad.png
     
-    templates: 
+#    templates: 
+#        list:  SonataAdminBundle:CRUD:list.html.twig
 #        show:   AppComprasBundle:Admin:show.html.twing
         
         
