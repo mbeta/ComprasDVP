@@ -7,11 +7,15 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use App\ComprasBundle\Entity\TipoCompra;
+
 
 
 class PedidoElementoAdmin extends Admin
 
 {
+    
+    
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -21,14 +25,12 @@ class PedidoElementoAdmin extends Admin
 //            ->add('id')
             ->add('nroPedido', null, array('label'=>'Nro de Pedido'))
             ->add('fechaPedido')
-            ->add('referencia')          
-            ->add('observacion')
             ->add('nroActuacion')
             ->add('tipocompra', null, array('label'=>'Tipo Compra'))
             ->add('estadopedido', null, array('label'=>'Estado'))
             ->add('autorizado')
-            ->add('ley')
-            ->add('fechaAutorizado')
+
+
         ;
     }
 
@@ -66,9 +68,24 @@ class PedidoElementoAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-     
         
-        
+        $pedido = $this->getSubject();
+        if($pedido->getId()!=null){
+        $query = $this->modelManager->getEntityManager('AppComprasBundle:TipoCompra')
+                ->createQueryBuilder() ->add('select', 'u') 
+                ->add('from', 'AppComprasBundle:TipoCompra u')
+                ->add('where','u.montoMin<=:total')
+                ->add('where','u.montoMax>=:total');
+                $query->setParameter('total', $pedido->getTotal());
+//                $pedido->setTipoCompra(($this->modelManager->executeQuery($query)));
+                
+        $formMapper->with('Cabecera Pedido')
+                ->add('tipocompra',null, array('label'=>false,'query_builder' => $query,
+                    'disabled'=>true,'read_only'=>true, 'required' => true))
+//                ->add('tipocompra', null, array('label'=>'Tipo Compra',
+//                     'required' => true))
+                ->end();               }
+       
         
         $formMapper
             ->with('Cabecera Pedido')
@@ -76,12 +93,12 @@ class PedidoElementoAdmin extends Admin
                 ->add('nroPedido', null, array('label'=>'Nro de Pedido'))
                 ->add('fechaPedido', 'date',array('label' => 'Fecha Pedido', 
                                         'widget' => 'single_text','required' => false,
-                                        'attr' => array('class' => 'datepicker')))
-                
+                                        'attr' => array('class' => 'datepicker')))               
                 ->add('referencia', null, array('label'=>'Referencia'))
                 ->add('observacion', null, array('label'=>'Observación'))
                 ->add('nroActuacion', null, array('label'=>'Nro de Actuación'))
-                ->add('tipocompra', null, array('label'=>'Tipo Compra', 'read_only'=>true, 'disabled' => true))
+//                ->add('tipocompra', null, array('label'=>'Tipo Compra','query_builder' => $query,
+//                 'read_only'=>true, 'disabled' => true, 'required' => true))
                 ->add('estadopedido', null, array('label'=>'Estado', 'class'=>'App\ComprasBundle\Entity\EstadoPedido'))
                 ->add('autorizado', null, array('label'=>'Autorización'))
                 ->add('ley', 'choice', array('label'=>'Ley','choices'=>array(
@@ -97,8 +114,7 @@ class PedidoElementoAdmin extends Admin
                         array('edit'=>'inline', 'inline'=>'table'))
             ->end()
                 
-            ->with('Pedidos Absordidos')
-//                ->add('pedidosabsorbidos', 'sonata_type_collection', array('label'=>'Nro Pedido'))
+            ->with('Pedidos Absordidos')         
                 ->add('pedidosabsorbidos')
             ->end()
                 
@@ -131,13 +147,11 @@ class PedidoElementoAdmin extends Admin
             ->with('Detalle Pedido', array('collapsed' => true))
                 ->add('lineas', 'sonata_type_collection', array('label'=>'Lineas',
                     'route'=>array('name'=>'show')),array('edit'=>'inline',
-                                                            'inline'=>'table'))
-                
-          
-              
+                                                            'inline'=>'table')) 
             ->end()
-             ->with('Total')
                 
+                
+             ->with('Total')              
               ->add('total', null, array( 'mapped'=>false, 'required'=>false,
                 'disabled'=>true, 'read_only'=>true))
                 
@@ -156,24 +170,21 @@ class PedidoElementoAdmin extends Admin
         foreach ($pedido->getLineas() as $linea) {
             $linea->setPedidoElemento($pedido);
                  
-        }        
+        }
+//        
+//       
     }
 //    
-//    public function postPersist($object) {
-//       
-//        
-//        
-//    }
-
-
     public function preUpdate($pedido) {
         //code ...
         foreach ($pedido->getLineas() as $linea) {
-            $linea->setPedidoElemento($pedido);
+            $linea->setPedidoElemento($pedido);     
         }
+        
     }
     
-    public function postUpdate($pedido) {
-       $lineas=$pedido->getLineas();
-    }
+  
+    
+   
+    
 }

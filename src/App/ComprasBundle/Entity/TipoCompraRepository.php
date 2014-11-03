@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class TipoCompraRepository extends EntityRepository
 {
+ 
+    
+    public function calcularTipoCompra($monto){
+        $tipos = $this->getDoctrine()->getEntityManager()
+        ->getRepository('AppComprasBundle:TipoCompra')
+        ->findAll();
+        
+        foreach ($tipos as $tipo) {
+            if(($tipo->getMontoMin()<$monto)&&($tipo->getMontoMax()<$monto)){
+                return $tipo;
+            }
+        }
+    }
+    
 }

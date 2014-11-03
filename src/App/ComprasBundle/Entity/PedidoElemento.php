@@ -174,7 +174,18 @@ class PedidoElemento
         $this->getTotal();
     }
     
-    
+//    public function calcularTipoCompra(){
+//        $tipos = $this->getDoctrine()->getEntityManager()
+//        ->getRepository('AppComprasBundle:TipoCompra')
+//        ->findAll();
+//        
+//        foreach ($tipos as $tipo) {
+//            if(($tipo->getMontoMin()<$this->getTotal())&&($tipo->getMontoMax()<$this->getTotal())){
+//                $this->setTipocompra($tipo);
+//            }
+//        }
+//    }
+        
     /**
      * Get id
      *
