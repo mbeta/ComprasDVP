@@ -20,19 +20,19 @@ services:
         class: App\ComprasBundle\Admin\EstadoPedidoAdmin
         arguments: [~, App\ComprasBundle\Entity\EstadoPedido, AppComprasBundle:EstadoPedidoAdmin]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: Administracion, label: EstadoPedido}
+            - {name: sonata.admin, manager_type: orm, group: Administracion, label: Estado Pedido}
 
     app_compras.admin.linea_pedido_elemento:
         class: App\ComprasBundle\Admin\LineaPedidoElementoAdmin
         arguments: [~, App\ComprasBundle\Entity\LineaPedidoElemento, AppComprasBundle:LineaPedidoElementoAdmin]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: Compras, label: LineaPedidoElemento}
+            - {name: sonata.admin, manager_type: orm, group: Compras, label: -}
 
     app_compras.admin.pedido_elemento:
         class: App\ComprasBundle\Admin\PedidoElementoAdmin
         arguments: [~, App\ComprasBundle\Entity\PedidoElemento, AppComprasBundle:PedidoElementoAdmin]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: Compras, label: PedidoElemento}
+            - {name: sonata.admin, manager_type: orm, group: Compras, label: Pedido Elemento}
 
     app_compras.admin.ubicacion:
         class: App\ComprasBundle\Admin\UbicacionAdmin

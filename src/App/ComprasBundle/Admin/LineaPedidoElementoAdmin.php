@@ -70,7 +70,7 @@ class LineaPedidoElementoAdmin extends Admin
         $showMapper
 //            ->add('id')
             
-            ->add('articulo', null, array('label'=>'Artículo'))
+            ->add('articulo', null, array('label'=>'Artículo', 'route'=>array('name'=>'show')))
             ->add('cantidad', null, array('label'=>'Cantidad'))
             ->add('precioUnitario', null, array('label'=>'Precio Unitario'))
             ->add('subtotal', 'text', array('label'=>'Subtotal', 'mapped'=>false, 'required'=>false, 

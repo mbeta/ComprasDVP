@@ -21,6 +21,7 @@ class UsuarioAdmin extends Admin
             ->add('puesto')
             ->add('nombreUsuario')
             ->add('password')
+            ->add('ubicacion')
         ;
     }
 
@@ -35,6 +36,7 @@ class UsuarioAdmin extends Admin
             ->add('puesto')
             ->add('nombreUsuario')
             ->add('password')
+            ->add('ubicacion')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -56,6 +58,7 @@ class UsuarioAdmin extends Admin
             ->add('puesto')
             ->add('nombreUsuario')
             ->add('password')
+                ->add('ubicacion')
         ;
     }
 
@@ -70,6 +73,7 @@ class UsuarioAdmin extends Admin
             ->add('puesto')
             ->add('nombreUsuario')
             ->add('password')
+                ->add('ubicacion')
         ;
     }
 }
