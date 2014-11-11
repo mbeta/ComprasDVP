@@ -1,8 +1,8 @@
 <?php
     //Llamando las librerias
     require_once('http://localhost:8080/JavaBridge/java/Java.inc');
-    //require('../php-jru/php-jru.php');
-    require_once("../PHP-JRU/PHP-JRU.php"); 
+    require_once('../php-jru/php-jru.php');
+//    require_once("http://localhost:8080/PHPJRU/"); 
     //Llamando la funcion JRU de la libreria php-jru
     $jru=new JRU();
     //Ruta del reporte compilado Jasper generado por IReports

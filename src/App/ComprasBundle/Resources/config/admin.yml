@@ -26,7 +26,7 @@ services:
         class: App\ComprasBundle\Admin\LineaPedidoElementoAdmin
         arguments: [~, App\ComprasBundle\Entity\LineaPedidoElemento, AppComprasBundle:LineaPedidoElementoAdmin]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: Compras, label: -}
+            - {name: sonata.admin, manager_type: orm, group: Compras, label: -, show_in_dashboard: false}
 
     app_compras.admin.pedido_elemento:
         class: App\ComprasBundle\Admin\PedidoElementoAdmin

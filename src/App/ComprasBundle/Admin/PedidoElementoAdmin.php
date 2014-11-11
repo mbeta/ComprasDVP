@@ -37,7 +37,7 @@ class PedidoElementoAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-//            ->add('id')
+//            ->add('id')            
             ->addIdentifier('nroPedido', null, array('label'=>'Nro de Pedido'))
             ->add('fechaPedido', null, array('label'=>'Fecha de Pedido', 'format'=>'d.m.Y'))
             ->add('referencia', null, array('label'=>'Referencia'))
@@ -158,10 +158,9 @@ class PedidoElementoAdmin extends Admin
                 ->add('ley', null, array('label'=>'Ley'))
                 ->add('fechaAutorizado', null, array('label'=>'Fecha Autorizacion'))
             ->end()
-            ->with('Detalle Pedido', array('collapsed' => true))
-                ->add('lineas', 'sonata_type_collection', array('label'=>'Lineas',
-                    'route'=>array('name'=>'show')),array('edit'=>'inline',
-                                                            'inline'=>'table')) 
+            ->with('Detalle Pedido')
+                ->add('lineas', 'sonata_type_collection', array('label'=>'Lineas', 'route'=>array('name'=>'show')),
+                        array('edit'=>'inline', 'inline'=>'table')) 
             ->end()
                 
                 
@@ -176,13 +175,12 @@ class PedidoElementoAdmin extends Admin
     }
     
     
-    
       //code…
  
     public function prePersist($pedido) {
         //asigno id de pedido de elemento en las lineas para las claves foraneas
-        foreach ($pedido->getLineas() as $linea) {
-            $linea->setPedidoElemento($pedido);
+        foreach ($pedido->getLineas() as $lineas) {
+            $lineas->setPedidoElemento($pedido);
                  
         }
 //        
@@ -191,8 +189,8 @@ class PedidoElementoAdmin extends Admin
 //    
     public function preUpdate($pedido) {
         //code ...
-        foreach ($pedido->getLineas() as $linea) {
-            $linea->setPedidoElemento($pedido);     
+        foreach ($pedido->getLineas() as $lineas) {
+            $lineas->setPedidoElemento($pedido);     
         }
         
     }
